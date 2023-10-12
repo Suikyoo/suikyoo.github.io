@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Love Calc</title>
+        <style>
+            body {
+                transition-timing-function: ease-in;
+                margin: 0;
+                font-size: 30px;
+
+            }
+
+            nav {
+                background-color: #d9597b;
+                padding: 30px;
+                color: white;
+
+            }
+
+            h1 {
+                text-align: center;
+
+            }
+
+            h3 {
+                text-align: center;
+
+            }
+
+            canvas {
+                display: block;
+                clear: both;
+                width: 60%;
+                margin-left:  auto;
+                margin-right: auto;
+                border-radius: 10px;
+
+
+            }
+            </style>
+
+        <script>
+            function name_to_int(name) {
+                let value = 0;
+                for (i = 0; i<name.length; i++) {
+                    if (name[i].toUpperCase() != name[i].toLowerCase()){
+                        value += parseInt(name[i], 36) - 9;
+                    }
+
+                }
+                return value;
+
+            }
+
+            //pseudo-random
+            function random_int(value) {
+                return Math.abs(Math.sin((Math.cos(value%10) * 100) % 5));
+
+            }
+
+            function name_to_rand_int(name) {
+                let value = name_to_int(name);
+                return random_int(value);
+
+            } 
+
+            function get_match(name_1, name_2) {
+                let value_1 = name_to_rand_int(name_1);
+                let value_2 = name_to_rand_int(name_2);
+
+                return Math.min(value_1, value_2)/Math.max(Math.max(value_1, value_2), 0.1);
+
+            }
+
+            let parameters = new URLSearchParams(location.search);
+            let person_1 = parameters.get("person_1");
+            let person_2 = parameters.get("person_2");
+
+            var match = get_match(person_1, person_2);
+            var inter_val = 0;
+
+            window.onload = function() {
+            document.getElementById("person_1").innerHTML = person_1;
+            document.getElementById("person_2").innerHTML = person_2;
+
+            const canvas = document.getElementById("paper");
+            const ctx = canvas.getContext("2d");
+
+            setInterval(function(){
+                inter_val += (match - inter_val) * 0.01;
+                if (Math.abs(inter_val - match) < 0.02) {
+                    inter_val = match;
+                }
+
+                document.getElementById("percent_text").innerHTML = parseInt(inter_val * 100) + "%";
+
+
+
+                //canvas stuff
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.lineWidth = 30;
+                ctx.strokeStyle = "rgba(255, 80, 89, 0.9)";
+                ctx.beginPath();
+
+                ctx.moveTo(0, canvas.height/2);
+                ctx.lineTo(canvas.width * inter_val, canvas.height/2);
+
+                ctx.stroke();
+
+            }, 30);
+
+            }
+
+            
+        </script>
+    </head>
+
+    <body>
+        <nav>
+            <a>Love Calculator</a>
+        </nav>
+
+        <h1 id="person_1"></h1>
+        <h4 style="text-align: center;">and<h4>
+        <h1 id="person_2"></h1>
+        <canvas id="paper" height="20" style="border: 2px solid black;"></canvas>
+        <h3 id="percent_text"></h3>
+    </body>
+</html>

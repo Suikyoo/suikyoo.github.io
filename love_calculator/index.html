@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Love Calc</title>
+        <style>
+            body {
+                margin: 0;
+                font-size: 30px;
+
+            }
+
+            nav {
+                background-color: #d9597b;
+                padding: 30px;
+                color: white;
+
+            }
+
+            form {
+                padding: 30px;
+                background-color: #e6b8b8;
+                width: 80%;
+                margin: 30px auto;
+
+            }
+            form input{
+                font-size: 20px;
+                width: 80%;
+                height: 30px;
+                display: block;
+                text-align: center;
+                padding-left: 30px;
+                padding-right: 30px;
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            form input[type=text]{
+                border: none;
+            
+            }
+
+            form input[type=submit]{
+                color: #ffedf6;
+                border: none;
+                margin-top: 100px;
+                width: 20%;
+                background-color: #5ae663;
+                height: 70px;
+
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <nav>
+            <a>Love Calculator</a>
+        </nav>
+
+        <form method="GET" action="result.html">
+            <input type="text" name="person_1" wrap="physical">
+            <input type="text" name="person_2" wrap="physical">
+            <input class="submit" type="submit" value="SUBMIT">
+        </form>
+    </body>
+</html>
