@@ -5,9 +5,7 @@
         <title>Love Calc</title>
         <style>
             body {
-                margin: 0;
-                font-size: 30px;
-
+                margin: 5px;
             }
 
             nav {
@@ -20,8 +18,10 @@
             form {
                 padding: 30px;
                 background-color: #e6b8b8;
-                width: 80%;
+                width: 70%;
+                max-width: 1000px;
                 margin: 30px auto;
+                border-radius: 10px;
 
             }
             form input{
@@ -47,11 +47,72 @@
                 color: #ffedf6;
                 border: none;
                 margin-top: 100px;
+                min-width: 200px;
                 width: 20%;
                 background-color: #5ae663;
-                height: 70px;
+                height: 50px;
 
             }
+
+            /* Extra small devices (phones, 600px and down) */
+            @media only screen and (max-width: 600px) {
+                body {font-size: 10px;}
+                nav {padding: 15px;}
+                form {
+                    padding: 50px;
+                    width: 450;
+                    border-radius: 5px;
+
+                }
+
+            /* Small devices (portrait tablets and large phones, 600px and up) */
+            @media only screen and (min-width: 600px) {
+                body {font-size: 15px;}
+                nav {padding: 20px;}
+                form {
+                    padding: 50px;
+                    width: 500px;
+                    border-radius: 5px;
+
+                }
+            }
+
+            /* Medium devices (landscape tablets, 768px and up) */
+            @media only screen and (min-width: 768px) {
+                body {font-size: 20px;}
+                nav {padding: 25px;}
+                form {
+                    padding: 100px;
+                    width: 500px;
+                    border-radius: 10px;
+
+                }
+            } 
+
+            /* Large devices (laptops/desktops, 992px and up) */
+            @media only screen and (min-width: 992px) {
+                body {font-size: 30px;}
+                nav {padding: 35px;}
+                form {
+                    padding: 200px;
+                    width: 600px;
+                    border-radius: 10px;
+
+                }
+            } 
+
+            /* Extra large devices (large laptops and desktops, 1200px and up) */
+            @media only screen and (min-width: 1200px) {
+                body {font-size: 30px;}
+                nav {padding: 35px;}
+                form {
+                    padding: 200px;
+                    width: 700px;
+                    border-radius: 10px;
+
+                }
+            }
+
 
         </style>
     </head>

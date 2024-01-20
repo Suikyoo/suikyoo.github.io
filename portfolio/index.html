@@ -1,15 +1,17 @@
 <html>
     <head>
         <title>Portfolio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             
             @font-face {
-                font-family: swash;
-                src: url(assets/font.ttf);
+                font-family: new_font;
+                font-kerning: normal;
+                src: url(assets/font.otf);
 
             }
             body {
-                font-family: arial;
+                font-family: new_font;
                 background-color: #3d82e3;
                 margin: 0px;
                 transition-timing-function: ease-out;
@@ -23,17 +25,25 @@
 
             }
 
+            #background {
+                width: 100%;
+                height: 600px;
+                background-image: url('assets/banner.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                overflow: hidden;
+            }
+
             a {
                 color: #72a5cf;
                 text-decoration: none;
                 transition: background-color 0.5s, color 0.5s;
 
-
             }
 
             a:hover {
                 color: #d9d35f;
-                text-decoration: none;
 
             }
 
@@ -46,12 +56,10 @@
             }
 
             #main_nav {
-                border-top: none;
-                border-left: none;
-                border-right: none;
-                background-color: #3f6381;
-                border-bottom: solid 10px #224575;
-                box-shadow: inset 0px -10px #d9d35f;
+                width: 100%;
+                padding: 15px;
+                font-size: 20px;
+                background-color: #0a4872;
                 color: #72a5cf;
 
             }
@@ -64,25 +72,28 @@
             }
 
             .dropdown {
-                margin: left: 10px;
-                margin-top: 10px;
-                padding: 10px;
+                box-sizing: border-box;
                 position: relative;
                 display: inline;
 
             }
+            .dropdown>a {
+                position: relative;
+                display: inline-block;
+
+            }
 
             .dropdown_content {
-                margin-left: 20%;
+                margin-left: 20px;
+                border-radius: 10px;
                 display: none;
                 opacity: 0.5;
                 z-index: 1;
+                text-decoration: none;
                 position: absolute;
                 overflow-y: scroll;
                 width: 200px;
                 height: 300px;
-                border-radius: 20px;
-                transition: opacity 2s;
 
             }
 
@@ -113,6 +124,7 @@
                 border: solid 10px #d9d35f;
                 box-shadow: inset 10px 10px #224575, 10px 10px #224575;
 
+                min-width: 200px;
                 width: 20%;
                 margin: auto;
                 transition: width 0.5s, padding 2s;
@@ -120,7 +132,7 @@
             }
 
             #main:hover{
-                width: 80%;
+                width: 70%;
                 padding: 40px;
 
             }
@@ -156,6 +168,7 @@
 
             .profile h2 {
                 text-align: center;
+                font-size: 25px;
                 transition: font-size 0.5s;
 
             }
@@ -167,6 +180,8 @@
             }
 
             .profile p {
+                font-family: arial;
+                font-style: italic;
                 line-height: 30px;
                 opacity: 0;
                 font-size: 16px;
@@ -210,16 +225,439 @@
             .profile .tail {
                 background-color: #466e8f;
                 transition: background-color 0.5s;
-                flex-grow: 2;
+
+            }
+            /* Extra small devices (phones, 600px and down) */
+            @media only screen and (max-width: 600px) {
+                #background {
+                    height: 300px;
+                }
+
+                #main {
+                    padding: 10px;
+                    padding-bottom: 0px;
+                    border-width: 5px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 200px;
+                }
+                .profile .head h2{
+                    font-size: 16px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 20px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 12px;
+                    line-height: 15px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 100px;
+                    height: 200px;
+                }
+
+                .profile .head {
+                    width: 200px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 100px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 120px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 150px;
+                    height: 200px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 10px;
+
+                }
+
 
             }
 
+            /* Small devices (portrait tablets and large phones, 600px and up) */
+            @media only screen and (min-width: 600px) {
+                #background {
+                    height: 300px;
+                }
+
+                #main {
+                    padding: 10px;
+                    padding-bottom: 0px;
+                    border-width: 5px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 220px;
+                }
+                .profile .head h2{
+                    font-size: 16px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 20px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 12px;
+                    line-height: 15px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 150px;
+                    height: 200px;
+                }
+
+                .profile .head {
+                    width: 200px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 100px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 120px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 150px;
+                    height: 200px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 10px;
+
+                }background {
+                    height: 300px;
+                }
+
+                #main {
+                    padding: 10px;
+                    padding-bottom: 0px;
+                    border-width: 5px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 220px;
+                }
+                .profile .head h2{
+                    font-size: 16px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 20px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 16px;
+                    line-height: 15px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 250px;
+                    height: 200px;
+                }
+
+                .profile .head {
+                    width: 200px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 120px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 130px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 160px;
+                    height: 220px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 12px;
+
+                }    
+            }
+
+            /* Medium devices (landscape tablets, 768px and up) */
+            @media only screen and (min-width: 768px) {
+                #background {
+                    height: 300px;
+                }
+
+                #main {
+                    padding: 10px;
+                    padding-bottom: 0px;
+                    border-width: 5px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 230px;
+                }
+                .profile .head h2{
+                    font-size: 18px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 22px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 350px;
+                    height: 200px;
+                }
+
+                .profile .head {
+                    width: 200px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 130px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 140px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 160px;
+                    height: 220px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 12px;
+
+                }
+            }
+                 
+
+            /* Large devices (laptops/desktops, 992px and up) */
+            @media only screen and (min-width: 992px) {
+                #background {
+                    height: 300px;
+                }
+
+                #main {
+                    width: 30%;
+                    padding: 20px;
+                    padding-bottom: 0px;
+                    border-width: 10px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 300px;
+                }
+                .profile .head h2{
+                    font-size: 20px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 22px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 16px;
+                    line-height: 24px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 500px;
+                    height: 230px;
+                }
+
+                .profile .head {
+                    width: 500px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 150px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 180px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 170px;
+                    height: 300px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 14px;
+
+                } 
+            } 
+
+            /* Extra large devices (large laptops and desktops, 1200px and up) */
+            @media only screen and (min-width: 1200px) {
+                #background {
+                    height: 300px;
+                }
+
+                #main {
+                    width: 30%;
+                    padding: 20px;
+                    padding-bottom: 0px;
+                    border-width: 10px;
+                }
+                #main:hover {
+                    padding: 20px;
+                }
+
+                #main-nav {
+                    border-width: 20px;
+
+                }
+                .profile {
+                    height: 300px;
+                }
+                .profile .head h2{
+                    font-size: 24px;
+
+                }
+                .profile .head:hover h2 {
+                    font-size: 26px;
+
+                }
+                .profile p {
+                    text-align: left;
+                    font-size: 18px;
+                    line-height: 25px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    padding: 20px;
+                    width: 500px;
+                    height: 230px;
+                }
+
+                .profile .head {
+                    width: 500px;
+                    padding: 10px;
+
+                }
+                .profile .head img {
+                    width: 180px;
+
+                }
+
+                .profile .head:hover img {
+                    width: 200px;
+
+                }
+                #main_nav {
+                    font-size: 16px;
+                }
+                .dropdown_content {
+                    width: 220px;
+                    height: 300px;
+
+                }
+
+                .dropdown_content a {
+                    padding: 15px;
+
+                }
+            }
 
         </style>
     </head>
 
     <body id="home">
-        <nav id="main_nav" class="block">
+        <nav id="main_nav">
             <a href="#home">Home</a>
 
             <div class="dropdown">
@@ -239,7 +677,7 @@
 
         </nav>
 
-        <img src="assets/banner.png">
+        <div id="background"></div>
 
         <section style="background-color: #3d82e3;">
 
