@@ -55,7 +55,12 @@
 
             //pseudo-random
             function random_int(value) {
-                return Math.abs(Math.sin((Math.cos(value%10) * 6) % 5));
+                let new_value = value;
+                for (i = 0; i<20; i++){
+                    new_value += (new_value * 7 + 12) % 69;
+                }
+                return Math.abs(new_value%100) / 100;
+                //return Math.abs(Math.cos(Math.sin((value%10 * 20.523) % 3) * 32.2));
 
             }
 
@@ -66,10 +71,11 @@
             } 
 
             function get_match(name_1, name_2) {
-                let value_1 = name_to_rand_int(name_1);
-                let value_2 = name_to_rand_int(name_2);
+                let value_1 = name_to_int(name_1);
+                let value_2 = name_to_int(name_2);
+                return random_int(value_1 + value_2)
 
-                return Math.min(value_1, value_2)/Math.max(Math.max(value_1, value_2), 0.1);
+                //return Math.min(value_1, value_2)/Math.max(Math.max(value_1, value_2), 0.1);
 
             }
 
@@ -88,8 +94,8 @@
             const ctx = canvas.getContext("2d");
 
             setInterval(function(){
-                inter_val += (match - inter_val) * 0.01;
-                if (Math.abs(inter_val - match) < 0.02) {
+                inter_val += (match - inter_val) * 0.03;
+                if (Math.abs(inter_val - match) < 0.01) {
                     inter_val = match;
                 }
 
