@@ -94,7 +94,7 @@
             const ctx = canvas.getContext("2d");
 
             setInterval(function(){
-                inter_val += (match - inter_val) * 0.03;
+                inter_val += (match - inter_val) * 0.02;
                 if (Math.abs(inter_val - match) < 0.01) {
                     inter_val = match;
                 }
