@@ -1,0 +1,139 @@
+body {
+    font-family: monaco, monospace;
+    font-size: 80%;
+    background-color: #253657;
+    margin: 0px;
+    color: #f8e9e5;
+}
+
+mark {
+    border-radius: 0.2em;
+}
+
+img {
+    width: 100%;
+}
+
+code {
+    display: inline-block;
+    background-color: #2b2d37;
+    padding: 0.7em;
+    border: 0.1em solid #525569;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5em;
+
+}
+
+h1 {
+    font-weight: lighter; 
+    margin-top: 2em;
+}
+
+p, h1, h2 {
+    margin-left: 1em;
+}
+
+nav {
+    background-color: #182338;
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+
+}
+
+nav > a {
+    display: inline-block;
+    background-color: #6f4367;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    margin: 0.1em;
+    box-sizing: border-box;
+
+}
+
+.logo {
+    display: block;
+    width: 70%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.invlink {
+    background-color: #f5a1a1;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4em;
+    border-radius: 0.5em;
+    text-align: center;
+    width: 30vh;
+    box-sizing: border-box;
+
+
+}
+
+.textbox {
+    box-sizing: border-box;
+    border: 0.3em solid #a69aca;
+    padding: 1em;
+    margin: 0.5em;
+
+}
+
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shadowify {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.cardbox {
+    width: 90vw;
+    overflow: hidden;
+    border-radius: 1em 1em;
+    border-radius: 2;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cardbox .head{
+}
+.cardbox .tail{
+    margin: 1em;
+}
+
+span.red {
+    color:#c98181;
+}
+
+span.green {
+    color:#87c981;
+}
+
+mark.red {
+    background-color:#c98181;
+}
+
+mark.green {
+    background-color:#87c981;
+}
+
