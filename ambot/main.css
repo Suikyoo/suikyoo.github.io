@@ -1,11 +1,16 @@
 body {
     font-family: monaco, monospace;
     font-size: 80%;
-    background-color: #253657;
+    background-color: #242b30;
     margin: 0px;
     color: #f8e9e5;
+    font-weight: lighter; 
 }
 
+hr {
+    border: 0px;
+    margin: 3em;
+}
 mark {
     border-radius: 0.2em;
 }
@@ -24,14 +29,15 @@ code {
 
 }
 
-h1 {
-    font-weight: lighter; 
-    margin-top: 2em;
+p, h2 {
+    margin:0.2em;
 }
 
-p, h1, h2 {
-    margin-left: 1em;
+.cardbox > h2 {
+    margin: 0.5em;
+    margin-left: 1.2em;
 }
+
 
 nav {
     background-color: #182338;
@@ -57,7 +63,7 @@ nav > a {
 .logo {
     display: block;
     width: 70%;
-    margin-top: 2em;
+    margin-top: 20vw;
     margin-bottom: 2em;
     margin-left: auto;
     margin-right: auto;
@@ -104,21 +110,24 @@ nav > a {
 }
 
 .cardbox {
-    width: 90vw;
     overflow: hidden;
-    border-radius: 1em 1em;
-    border-radius: 2;
+    background-color: #242b30;
+    width: 80vw;
+    border: 2px solid #a69aca;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
+    margin-top: 1em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 
 .cardbox .head{
 }
 .cardbox .tail{
     margin: 1em;
+
 }
 
 span.red {
@@ -137,3 +146,8 @@ mark.green {
     background-color:#87c981;
 }
 
+.container {
+    box-sizing: border-box;
+    padding: 1em;
+    margin: 1em;
+}
