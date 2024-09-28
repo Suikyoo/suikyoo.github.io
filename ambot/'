@@ -33,12 +33,6 @@ p, h2 {
     margin:0.5em;
 }
 
-a {
-    font-family: inherit;
-    font-size: inherit;
-    text-decoration: none;
-    color: inherit;
-}
 .cardbox > h2 {
     margin: 0.5em;
     margin-left: 1.2em;
@@ -117,16 +111,11 @@ nav > a {
 
 .cardbox {
     background-color: #242b30;
-    position: relative;
-    flex-shrink: 0;
-    width: 80vw;
-    max-width: 500px;
+    width: 100%;
     border: 1px solid #a69aca;
-    margin-left: 10vw;
-    margin-right: 10vw;
-    border-radius: 2em 0 0 0;
+    border-radius: 2em;
+    margin: 5vw;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    scroll-snap-align: center;
 }
 
 
@@ -154,20 +143,10 @@ mark.green {
 }
 
 .container {
-    max-width: 90vw;
+    width: 90vw;
+    overflow: auto;
     display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    justify-content: space-between;
+    flex-direction: column;
     box-sizing: border-box;
-}
-
-.container::-webkit-scrollbar {
-    display: none;
+    margin: 1em;
 }
