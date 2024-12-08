@@ -61,12 +61,32 @@ input:focus {
 
     display: grid;
     gap: 0.5em;
-    padding: 0.5em;
+    padding: 1em;
     grid-template-columns: 45% 45%;
     justify-content: center;
     align-items: center;
     
 }
+
+.temp-calc > button {
+
+    color: #333644;
+    font-family: "Lucida Console";
+    font-weight: bold;
+
+    background-color: inherit;
+    border-color: inherit;
+    background-color: #797f9c;
+
+    width: 40%;
+    height: 2.3em;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border: 2px solid;
+    border-radius: 0.5em;
+}
+
 .temp-input {
     color: inherit;
     background-color: inherit;
@@ -114,3 +134,5 @@ img {
     width: 100%;
     margin-top: 1em;
 }
+
+
