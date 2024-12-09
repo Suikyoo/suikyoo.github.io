@@ -70,7 +70,6 @@ input:focus {
 .calc {
     color: #797f9c;
     background-color: #333644;
-    border-color: #797f9c;
     box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 24px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.5em;
@@ -101,12 +100,28 @@ input:focus {
     margin-bottom: 2em;
     border: 2px solid;
     border-radius: 0.5em;
+    position: relative;
+    top: 0.2em;
+    transition:  width 0.4s, top 0.1s, background-color 0.1s;
+}
+.calc > button:hover {
+    width: 45%;
+
+    top: 0;
+}
+
+.calc > button:active {
+    background-color: #cfcfcf;
+    top: 0.2em;
 }
 
 .div-input {
     color: inherit;
     background-color: inherit;
     margin: auto;
+
+    transition: color 0.2s;
+
 }
 
 
@@ -117,13 +132,15 @@ input:focus {
     color: inherit;
     background-color: inherit;
     position: relative;
-    top: 1.4em;
-    left: 2em;
+    top: 2em;
+    left: 0em;
+    transition: top 0.2s, left 0.2s;
 
 }
 
 .div-input > input {
 
+    text-align: center;
     margin: 1em;
     width: 95%;
     height: 2.3em;
@@ -137,11 +154,19 @@ input:focus {
     border:2px solid;
     border-radius: 0.2em;
 
+    transition: color 0.2s;
+
+
+}
+
+.div-input:focus-within > p{
+    top: 1.4em;
+    left: 2em;
+
 }
 
 .div-input:focus-within {
-    color: white;
-
+    color: #cfcfcf; 
 }
 
 .answerable{
