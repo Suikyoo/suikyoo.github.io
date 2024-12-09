@@ -4,64 +4,112 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="functions.js"></script>
     </head>
 
     <body>
 
         <div class="top-nav">
-            <p>logo</p>
-            <p>options</p>
+            <img src="assets/ctu_logo.png" class="icon">
+            <div class="profile">
+                <div style="margin: 1em;">
+                <p style="width: 100%; font-size: 80%">Jude Anthony G. Sayson</p>
+                <p style="width: 100%; color: #797f9c; font-size: 60%;">Computer Engineering Student</p>
+                </div>
+                <img src="assets/profile.jpg" class="icon">
+            </div>
         </div>
 
         <div class="mid-content">
             <h1>Differential Equation Compilation</h1>
             <img src="assets/coding.jpg">
-            <p class="desc">the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog</p>
+            <p class="desc">This finals project for the Differential Equations course is a collection of programs created to apply differential equations in real programming settings as a Computer Engineering student.</p>
 
             <h1>Initial-Value Problems (IVP)</h1>
-            <div class="temp-calc">
-                <div class="temp-input" style="grid-column: 1 / span 3">
-                    <p>Tₘ (°C) </p>
-                    <input type="text">
-                </div>
-
-                <div class="temp-input" style="grid-row: 2; opacity: 40%;">
+            <h2>Growth and Decay</h2>
+            <div class="calc">
+                <div class="div-input" style="grid-row: 1; opacity: 40%;">
                     <p>t₀ (s) </p>
                     <input type="text" placeholder="0" disabled>
                 </div>
 
-                <div class="temp-input" style="grid-row: 2;">
-                    <p>T₀ (°C) </p>
-                    <input type="text">
+                <div class="div-input" style="grid-row: 1;">
+                    <p>P₀(people) </p>
+                    <input type="text" id="population_0">
                 </div>
 
-                <div class="temp-input" style="grid-row: 3;">
+                <div class="div-input answerable" style="grid-row: 2;">
                     <p>t₁ (s) </p>
-                    <input type="text">
+                    <input type="text" id="t_1">
                 </div>
 
-                <div class="temp-input" style="grid-row: 3;">
-                    <p>T₁ (°C) </p>
-                    <input type="text">
+                <div class="div-input answerable" style="grid-row: 2;">
+                    <p>P₁(people) </p>
+                    <input type="text" id="population_1">
                 </div>
 
-                <div class="temp-input" style="grid-row: 4;">
+                <div class="div-input answerable" style="grid-row: 3;">
                     <p>tₙ (s) </p>
-                    <input type="text">
+                    <input type="text" id="t_2">
                 </div>
 
-                <div class="temp-input" style="grid-row: 4;">
-                    <p>Tₙ (°C) </p>
-                    <input type="text">
+                <div class="div-input answerable" style="grid-row: 3;">
+                    <p>Pₙ(people) </p>
+                    <input type="text" id="population_2">
                 </div>
-                <button type="button" style="grid-column: 1 / span 2;" onclick="calculate()">Submit</button>
+                <button type="button" style="grid-column: 1 / span 2; " onclick="growth_and_decay_calculation()">Submit</button>
+
+            </div>
+
+            <h2>Cooling and Heating</h2>
+            <div class="calc">
+                <div class="div-input" style="grid-column: 1 / span 3">
+                    <p>Tₘ (°C) </p>
+                    <input type="text" id="temp_m">
+                </div>
+
+                <div class="div-input" style="grid-row: 2; opacity: 40%;">
+                    <p>t₀ (s) </p>
+                    <input type="text" placeholder="0" disabled>
+                </div>
+
+                <div class="div-input" style="grid-row: 2;">
+                    <p>T₀ (°C) </p>
+                    <input type="text" id="temp_0">
+                </div>
+
+                <div class="div-input answerable" style="grid-row: 3;">
+                    <p>t₁ (s) </p>
+                    <input type="text" id="time_1">
+                </div>
+
+                <div class="div-input answerable" style="grid-row: 3;">
+                    <p>T₁ (°C) </p>
+                    <input type="text" id="temp_1">
+                </div>
+
+                <div class="div-input answerable" style="grid-row: 4;">
+                    <p>tₙ (s) </p>
+                    <input type="text" id="time_2">
+                </div>
+
+                <div class="div-input answerable" style="grid-row: 4;">
+                    <p>Tₙ (°C) </p>
+                    <input type="text" id="temp_2">
+                </div>
+                <button type="button" style="grid-column: 1 / span 2; " onclick="cooling_heating_calculation()">Submit</button>
                 
             </div>
-            <p class="desc">This IVP calculator solves for any one missing given (except for the default value for the initial time). </p>
-            <h1>IVP Application</h1>
+            <p class="desc">These IVP calculators solve for any one missing given (labeled with a yellow border). </p>
+            <h1>Integral and Differential Application</h1>
+            <h2>Verlet Mesh</h2>
             <img src="assets/mesh.gif">
-            <p class="desc">source: <a href="meh.png">ahaoho</a></p>
+            <p class="desc">source: <a href="https://github.com/Suikyoo/differential_equation_compilation/tree/master/physics%20mesh">github link</a></p>
             <p class="desc">A common application of IVPs are kinamatic equations. Integration can be done not only to omit 1st order derivatives like velocity, but also to make a more accurate prediction on the position of a particle in the next discrete timestep/frame.</p>
+            <h2>Sayson Wheel or sth idk</h2>
+            <img src="assets/wheel.gif">
+            <p class="desc">source: <a href="https://github.com/Suikyoo/differential_equation_compilation/tree/master/wheel%20thingy">github link</a></p>
+            <p class="desc">I'm not gonna pass this today let's face it. I even forgot how this works</p>
 
             
         </div>

@@ -14,9 +14,24 @@ p, h1, h2 {
 }
 
 h1 {
+    position: sticky;
+    top: 0;
+    background-color: #2b2d37;
+    height: 2em;
+    box-sizing: content-box;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
     font-size: 1.3em;
+    z-index: 999;
+}
+
+h2 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 1.1em;
 }
 
 input:focus {
@@ -36,7 +51,7 @@ input:focus {
 
     margin: 0px;
     width: 100%;
-    height: 2em;
+    height: 5em;
     padding: 1.5em;
 
 }
@@ -44,6 +59,7 @@ input:focus {
 .mid-content {
     box-sizing: border-box;
     padding: 1em;
+    overflow: visible;
 }
 
 .desc {
@@ -51,7 +67,7 @@ input:focus {
     font-style: normal;
 }
 
-.temp-calc {
+.calc {
     color: #797f9c;
     background-color: #333644;
     border-color: #797f9c;
@@ -68,7 +84,7 @@ input:focus {
     
 }
 
-.temp-calc > button {
+.calc > button {
 
     color: #333644;
     font-family: "Lucida Console";
@@ -87,18 +103,17 @@ input:focus {
     border-radius: 0.5em;
 }
 
-.temp-input {
+.div-input {
     color: inherit;
     background-color: inherit;
-    border-color: inherit;
     margin: auto;
 }
 
 
-.temp-input > p {
+.div-input > p {
     font-size: 80%;
     text-align: center;
-    width: 5em;
+    width: 6em;
     color: inherit;
     background-color: inherit;
     position: relative;
@@ -107,7 +122,7 @@ input:focus {
 
 }
 
-.temp-input > input {
+.div-input > input {
 
     margin: 1em;
     width: 95%;
@@ -124,10 +139,13 @@ input:focus {
 
 }
 
-.temp-input:focus-within {
-    border-color: green;
+.div-input:focus-within {
     color: white;
 
+}
+
+.answerable{
+    color: #bab895;
 }
 
 img {
@@ -135,4 +153,14 @@ img {
     margin-top: 1em;
 }
 
+.icon {
+    width: 3em; 
+    border-radius: 20em;
+}
 
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
