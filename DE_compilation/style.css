@@ -36,7 +36,7 @@ h1 {
 }
 
 h2 {
-    margin-top: 1em;
+    margin-top: 2em;
     margin-bottom: 1em;
     font-size: 1.1em;
 }
@@ -70,6 +70,7 @@ input:focus {
 }
 
 .desc {
+    line-height: 1.7em;
     color: #797f9c;
     font-style: normal;
 }
