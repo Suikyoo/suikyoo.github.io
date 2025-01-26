@@ -1,0 +1,187 @@
+/*variable declarations*/
+
+$neutral-color: white;
+$bland-color: #ffe7cf;
+$dark-color: #756b5e;
+
+$primary-color: #ff8873;
+$secondary-color: #9cc5cd;
+
+$round-value: 10px;
+
+::-webkit-scrollbar {
+    width: 2em;
+}
+
+::-webkit-scrollbar-track {
+    background: $neutral-color;
+    border-radius: 5em;
+    background-clip: content-box;
+    border: 0.6em solid $bland-color;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: $dark-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+}
+
+@mixin shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text {
+    font: {
+      family: "Monaco", monospace;
+      size: 18px;
+      style: italic;
+    }
+}
+
+.convo-name {
+    @extend .text;
+    color: $neutral-color;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+li {
+    list-style-type: none;
+}
+#root {
+    background-color: $neutral-color;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0;
+    padding: 7vw;
+    box-sizing: border-box;
+
+}
+
+.convo-tab {
+    flex-grow: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.convo-components {
+    margin: 5px;
+
+}
+
+.head {
+    @extend .convo-components;
+    @include shadow;
+    border-radius: $round-value $round-value 0 0;
+    flex-grow: 1;
+    background-color: $primary-color;
+    box-sizing: border-box;
+    padding: {
+        left: 1em;
+    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.body {
+    @extend .convo-components;
+    @include shadow;
+    flex-grow: 50;
+    background-color: $bland-color;
+    overflow-y: scroll;
+    padding: 1em;
+    box-sizing: border-box;
+
+}
+
+.foot {
+    @extend .convo-components;
+    @include shadow;
+    flex-grow: 1;
+    background-color: $neutral-color;
+    border-radius: 0 0 $round-value $round-value;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: {
+        top: 2vw;
+        bottom: 2vw;
+    }
+}
+
+input {
+    all: unset;
+    @extend .text;
+    font-weight: bold;
+    font-size: 1em;
+    border: 2px solid;
+    padding: {
+        left: 1em;
+        right: 1em;
+        top: 0.2em;
+        bottom: 0.2em;
+    }
+    box-sizing: border-box;
+    border-radius: $round-value;
+    color: $dark-color;
+    border-color: $dark-color;
+
+}
+
+input:hover {
+    border-color: $secondary-color;
+}
+
+input:focus {
+    border-color: $primary-color;
+}
+
+.icon {
+    width: 7vw;
+    height: 7vw;
+    flex-basis: auto;
+
+}
+
+.text-input {
+    width: 100%;
+    height: 90%;
+}
+
+.message {
+    @extend .text;
+    @include shadow;
+    font-size: 0.8em;
+    margin: {
+        top: 1em;
+        bottom: 1em;
+    }
+    border-radius: $round_value + 10;
+    background-color: $neutral-color;
+    padding: 0.002em;
+    text-align: center;
+}
+
+.left {
+    align-self: flex-end;
+    border-bottom-left-radius: 0;
+}
+.right {
+    align-self: flex-start;
+    border-bottom-right-radius: 0;
+}

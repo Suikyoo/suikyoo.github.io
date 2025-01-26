@@ -62,8 +62,13 @@ function growth_and_decay_calculation() {
         const data = non_valid_id.split("_");
 
         if (data[0] == "population") {
+            if (data[1] == "0") {
+                value = Math.exp((pairs[0][0] * Math.log(Math.abs(pairs[1][1])) - pairs[1][0] * Math.log(Math.abs(pairs[0][1]))) / (pairs[0][0] - pairs[1][0]));
 
-            value = c * Math.exp(k * pairs[2][0]);
+            }
+            else {
+                value = c * Math.exp(k * pairs[2][0]);
+            }
 
         }
         else if (non_valid_id.split("_")[0] == "t") {
@@ -130,13 +135,25 @@ function cooling_heating_calculation() {
         let k = Math.log((pairs[1][1] - temp_m) / c) / pairs[1][0];
         let value = 0;
 
+        const data = non_valid_id.split("_");
 
-        if (non_valid_id.split("_")[0] == "temp") {
+        console.log(data);
+        if (data[0] == "temp") {
 
-            value = Number(temp_m) + c * Math.pow(Math.exp(1), pairs[2][0] * k);
+            if (data[1] == "0") {
+                console.log(temp_m);
+                let a = (pairs[0][0] * Math.log(Math.abs(pairs[1][1] - temp_m)) - pairs[1][0] * Math.log(Math.abs(pairs[0][1] - temp_m))) / (pairs[0][0] - pairs[1][0]);
+
+                value = Math.exp(a) + temp_m;
+                console.log(value);
+            }
+            
+            else {
+                value = Number(temp_m) + c * Math.pow(Math.exp(1), pairs[2][0] * k);
+            }
 
         }
-        else if (non_valid_id.split("_")[0] == "time") {
+        else if (data[0] == "time") {
             value = Math.log(Math.abs((pairs[2][1] - Number(temp_m))/c)) / k;
 
 
