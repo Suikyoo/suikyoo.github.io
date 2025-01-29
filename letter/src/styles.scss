@@ -17,12 +17,18 @@ $round-value: 10px;
     background: $neutral-color;
     border-radius: 5em;
     background-clip: content-box;
-    border: 0.6em solid $bland-color;
+    border: 0.6em solid rgba(0, 0, 0, 0);
 
 }
 
 ::-webkit-scrollbar-thumb {
     background: $dark-color;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 5em;
+    background-clip: content-box;
+    border: 0.9em solid rgba(0, 0, 0, 0);
+
 }
 
 ::-webkit-scrollbar-thumb:hover {
