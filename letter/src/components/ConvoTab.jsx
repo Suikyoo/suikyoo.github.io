@@ -4,10 +4,15 @@ import { useState } from 'react'
 import sendIcon from '../assets/send.svg'
 
 
+//there would be a host server on a specific address that 
+//is connectible using socket.io
+
+//use "send message" event to update the data inside the server
+//and listen for the "send message" event too to listen for updates
 
 const ConvoTab = ({name}) => {
 
-    const [messageList, setMessageList] = useState([{messageId: 0, text: "ehehehehehe", alignment: "left"}])
+    const [messageList, setMessageList] = useState([{messageId: 0, text: "ehehehehehe", user: "sample-user"}])
 
     return (
             <div className="convo-tab">
