@@ -1,5 +1,7 @@
 
-import { useState } from 'react'
+import {useState, useEffect} from 'react'
+
+import { socket } from '../socket'
 
 import sendIcon from '../assets/send.svg'
 
@@ -10,16 +12,38 @@ import sendIcon from '../assets/send.svg'
 //use "send message" event to update the data inside the server
 //and listen for the "send message" event too to listen for updates
 
+
 const ConvoTab = ({name}) => {
 
-    const [messageList, setMessageList] = useState([{messageId: 0, text: "ehehehehehe", user: "sample-user"}])
+    const [messageList, setMessageList] = useState([]);
+
+    useEffect(() => {
+        socket.on("connect", () => {
+            console.log('ueueueueueueu');
+            socket.emit("initialize-data", (data) => {
+                console.log("ehe");
+                console.log(data, typeof(data));
+                setMessageList(data);
+
+            });
+
+        }, []);
+
+
+        socket.on("disconnect", () => {console.log("client disconnected")});
+
+        return () => {
+            socket.off();
+        }
+
+    }, []);
 
     return (
-            <div className="convo-tab">
-                <Head name={name}/>
-                <Body array={messageList}/>
-                <Foot array={messageList} setArray={setMessageList}/>
-            </div>
+        <div className="convo-tab">
+            <Head name={name}/>
+            <Body name={name} array={messageList}/>
+            <Foot name={name} array={messageList} setArray={setMessageList}/>
+        </div>
     )
 }
 
@@ -31,10 +55,10 @@ const Head = ({name}) => {
     )
 }
 
-const Body = ({array}) => {
+const Body = ({name, array}) => {
     return (
         <ul className="body">
-            {array.map( msg => <li key={msg.messageId}><Message text={msg.text} alignment={msg.alignment}/></li>)}
+            {array.map( msg => <li key={msg.id}><Message user={msg.user} text={msg.content}/></li>)}
         </ul>
     )
 }
@@ -44,11 +68,10 @@ const Foot = ({array, setArray}) => {
 
     return (
         <div className="foot">
-            <input type="text" value={message} onChange={event => setMessage(event.target.value)}/>
+            <input type="text" id="message-input" value={message} onChange={event => setMessage(event.target.value)}/>
 
-            <button type="button" onClick={() => {
-                setArray(array.concat([{messageId: array[array.length - 1].messageId + 1, text: message, alignment: "left"}]))
-                setMessage("");
+            <button onClick={(event) => {
+                //onclick button for inputting chat message
             }
                 }>
                 <img src={sendIcon} className="icon"/>
@@ -58,10 +81,10 @@ const Foot = ({array, setArray}) => {
     )
 }
 
-const Message = ({text, alignment}) => {
+const Message = ({user, text}) => {
     return (
-        <div className={"message" + " " + alignment} style={{width: String(text.length * 0.9) + "em"}}>
-            <p>{text}</p>
+        <div className={"message" + " " + "left"} style={{width: String(text.length * 0.9) + "em"}}>
+            <p>{`user ${user}: ` + text}</p>
         </div>
     )
 

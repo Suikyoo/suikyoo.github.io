@@ -1,31 +1,32 @@
 
-const express = require('express');
-const io = require('socket.io');
-const app = express();
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 
-const http = createServer(app);
-const socket = io(http);
+const PORT = 5500;
+const httpServer = createServer();
 
-const socket = require
+const io = new Server(httpServer, {
+    cors: {
+        origin: ["http://localhost:5173", "http://localhost:5173"],
+        methods: ["GET", "POST"]
+    }
+});
 
-let accounts = [
-    "Suikyoo": 
-]
 
 let data = [
     {
         "user": "Suikyoo",
-        "message": "the quick brown fox jumped over the lazy dog",
+        "content": "the quick brown fox jumped over the lazy dog",
         "id": 0
     },
     {
         "user": "Delta",
-        "message": "lorem ipsum dolor amet",
+        "content": "lorem ipsum dolor amet",
         "id": 1
     },
     {
         "user": "Gamma",
-        "message": "wubalubadubdub",
+        "content": "wubalubadubdub",
         "id": 2
     }
 
@@ -38,15 +39,30 @@ let data = [
 
 //this is used to catch up on the backlogs chat messages
 //i.e, a user has logged in late
-socket.on("connect", () => {
-    //I forgot suss
-    return notes
+io.on("connection", (socket) => {
+    console.log(`user: ${socket.id} has connected`);
+
+    socket.on("initialize-data", (callback) => {
+        console.log("ahahaha");
+        callback(data);
+
+    });
+    socket.on("send-message", (content) => {
+        socket.broadcast.emit("receive-message", content);
+        callback();
+
+    });
+
+    io.on("disconect", (reason) => {
+        console.log(reason);
+    });
+
 });
 
 //whatym tryna say is, once any client sends a message, 
 //the server broadcasts the message to all the other clients.
+//and also interacts with itself through a callback function, letting the client know that the message was sent
 
-socket.on("send message", (content) => {
-    //idk man 
-    socket.emit("send message" , content);
-});
+
+
+httpServer.listen(PORT, () => console.log(`Server listening on port: ${PORT}.`));
