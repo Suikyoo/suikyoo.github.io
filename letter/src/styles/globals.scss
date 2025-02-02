@@ -1,0 +1,59 @@
+/*variable declarations*/
+
+$neutral-color: white;
+$bland-color: #ffe7cf;
+$dark-color: #756b5e;
+
+$primary-color: #ff8873;
+$secondary-color: #9cc5cd;
+
+$round-value: 10px;
+
+
+
+@mixin shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text {
+    font: {
+      family: "Monaco", monospace;
+      size: 18px;
+      style: italic;
+    }
+}
+
+.outline {
+    border: 2px solid;
+    border-radius: $round-value;
+    color: $dark-color;
+    border-color: $dark-color;
+}
+
+.outline:hover {
+    border-color: $secondary-color;
+}
+
+.outline:focus {
+    border-color: $primary-color;
+}
+
+.bg-neutral {
+    background-color: $neutral-color;
+}
+
+.bg-bland {
+    background-color: $bland-color;
+}
+
+.bg-dark {
+    background-color: $dark-color;
+}
+
+.bg-primary {
+    background-color: $primary-color;
+}
+
+.bg-secondary {
+    background-color: $secondary-color;
+}

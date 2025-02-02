@@ -1,10 +1,13 @@
 
-import {useState, useEffect} from 'react'
+import {createContext, useContext, useState, useEffect, useRef} from 'react';
 
-import { socket } from '../socket'
+import { socket } from '../socket';
+import { createRegister, getId } from  '../id';
+import { AuthContext } from '../auth';
 
-import sendIcon from '../assets/send.svg'
+import sendIcon from '../assets/send.svg';
 
+import '../styles/convo.scss';
 
 //there would be a host server on a specific address that 
 //is connectible using socket.io
@@ -12,81 +15,108 @@ import sendIcon from '../assets/send.svg'
 //use "send message" event to update the data inside the server
 //and listen for the "send message" event too to listen for updates
 
+const ConvoContext = createContext({});
 
 const ConvoTab = ({name}) => {
-
+    
     const [messageList, setMessageList] = useState([]);
+
+    //ids that have not been validated by the server
+    createRegister("temporary");
 
     useEffect(() => {
         socket.on("connect", () => {
-            console.log('ueueueueueueu');
+
             socket.emit("initialize-data", (data) => {
-                console.log("ehe");
-                console.log(data, typeof(data));
                 setMessageList(data);
 
             });
 
-        }, []);
-
+        });
 
         socket.on("disconnect", () => {console.log("client disconnected")});
-
-        return () => {
-            socket.off();
-        }
 
     }, []);
 
     return (
-        <div className="convo-tab">
-            <Head name={name}/>
-            <Body name={name} array={messageList}/>
-            <Foot name={name} array={messageList} setArray={setMessageList}/>
-        </div>
+        <ConvoContext.Provider value={{messageList, setMessageList}}>
+            <div className="convo-tab">
+                <Head/>
+                <Body/>
+                <Foot/>
+            </div>
+        </ConvoContext.Provider>
     )
 }
 
-const Head = ({name}) => {
+const Head = () => {
     return (
         <div className="head">
-            <p className="convo-name">{name}</p>
+            <p className="convo-name">Conversation</p>
         </div>
     )
 }
 
-const Body = ({name, array}) => {
+const Body = () => {
+    const { messageList } = useContext(ConvoContext);
+    console.log(typeof(messageList));
     return (
         <ul className="body">
-            {array.map( msg => <li key={msg.id}><Message user={msg.user} text={msg.content}/></li>)}
+            {messageList.map( msg => <Message key={msg.id} message={msg}/>)}
         </ul>
     )
 }
 
-const Foot = ({array, setArray}) => {
-    const [message, setMessage] = useState("")
+const Foot = () => {
+    const [userInput, setUserInput] = useState("")
+    const {messageList, setMessageList} = useContext(ConvoContext);
+    const {auth} = useContext(AuthContext);
+    const inputRef = useRef();
+
+    useEffect(() => {
+        socket.on("receive-message", (message) => {
+            setMessageList([... messageList, message]);
+        });
+    });
 
     return (
         <div className="foot">
-            <input type="text" id="message-input" value={message} onChange={event => setMessage(event.target.value)}/>
+            <form onSubmit={ e => {
 
-            <button onClick={(event) => {
+                e.preventDefault();
+
                 //onclick button for inputting chat message
-            }
-                }>
-                <img src={sendIcon} className="icon"/>
-            </button>
+                //create message object that syncs well with the message objects in the server
 
-        </div>
-    )
+                let message = {user: auth.name, content: userInput};
+
+                socket.emit("send-message", message, array.length);
+
+                setUserInput("");
+
+                inputRef.current.focus();
+
+                }}>
+
+                <input type="text" ref={inputRef} value={userInput} onChange={e => setUserInput(e.target.value)}/>
+
+                <button type="submit">
+                    <img src={sendIcon} className="icon"/>
+                </button>
+
+            </form>
+
+            </div>
+                )
 }
 
-const Message = ({user, text}) => {
+const Message = ({message}) => {
+    const {auth} = useContext(AuthContext);
     return (
-        <div className={"message" + " " + "left"} style={{width: String(text.length * 0.9) + "em"}}>
-            <p>{`user ${user}: ` + text}</p>
+        <div className={"message" + " " + (message.user === auth.name ? "right" : "left") } style={{width: String(message.content.length * 0.9) + "em"}}>
+            <p>{`${message.user}: ` + message.content}</p>
         </div>
     )
 
 }
-export default ConvoTab
+export default ConvoTab;
