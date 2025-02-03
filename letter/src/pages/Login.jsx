@@ -7,12 +7,9 @@ import passwordImg from '../assets/password.svg';
 
 import InputField from '../components/InputField';
 
-import '../styles/login.scss';
-
 const Login = () => {
 
     const formStyle = {
-<<<<<<< HEAD
         margin: 'auto',
         width: '70%',
         maxWidth: '375px',
@@ -22,12 +19,6 @@ const Login = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
-=======
-        width: '80%',
-        height: '80vh',
-        boxSizing: 'border-box',
-        padding: '1em'
->>>>>>> ab41be3b71717e44b20b599ec2da1848f19acabe
 
 
     };
@@ -45,13 +36,7 @@ const Login = () => {
 
     return (
         <>
-<<<<<<< HEAD
             <form className="round bg-secondary" style={formStyle} onSubmit={ async (e) => {
-=======
-            <form className="round bg-primary" style={formStyle}onSubmit={ async (e) => {
-                
-                e.preventDefault();
->>>>>>> ab41be3b71717e44b20b599ec2da1848f19acabe
 
                 const formData = new FormData(e.target);
 

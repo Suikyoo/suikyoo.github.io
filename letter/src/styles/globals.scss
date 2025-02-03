@@ -24,19 +24,14 @@ $round-value: 1em;
 }
 
 .round {
-<<<<<<< HEAD
     border-radius: $round-value;
 }
 
-=======
-  border-radius: $round-value;
-}
->>>>>>> ab41be3b71717e44b20b599ec2da1848f19acabe
 .outline {
     border: 2px solid;
     @extend .round;
     color: $dark-color;
-    border-color: $bland-color;
+    border-color: $dark-color;
 }
 
 .outline:hover {
