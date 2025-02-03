@@ -7,7 +7,7 @@ $dark-color: #756b5e;
 $primary-color: #ff8873;
 $secondary-color: #9cc5cd;
 
-$round-value: 10px;
+$round-value: 1em;
 
 
 
@@ -18,14 +18,18 @@ $round-value: 10px;
 .text {
     font: {
       family: "Monaco", monospace;
-      size: 18px;
+      size: 1em;
       style: italic;
     }
 }
 
+.round {
+    border-radius: $round-value;
+}
+
 .outline {
     border: 2px solid;
-    border-radius: $round-value;
+    @extend .round;
     color: $dark-color;
     border-color: $dark-color;
 }
@@ -56,4 +60,28 @@ $round-value: 10px;
 
 .bg-secondary {
     background-color: $secondary-color;
+}
+
+.neutral {
+    color: $neutral-color;
+}
+
+.bland {
+    color: $bland-color;
+}
+
+.dark {
+    color: $dark-color;
+}
+
+.primary {
+    color: $primary-color;
+}
+
+.secondary {
+    color: $secondary-color;
+}
+
+.hidden {
+    display: none;
 }

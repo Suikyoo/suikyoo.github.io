@@ -6,7 +6,8 @@ const InputField = ({name, inputType, img}) => {
     const divStyle = {
         padding: '0.3em',
         display: 'flex',
-        width: '100%',
+        width: '90%',
+        backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
@@ -14,21 +15,22 @@ const InputField = ({name, inputType, img}) => {
     };
 
     const iconStyle = {
-        flexGrow: '1'
+        flexGrow: '1',
+        marginRight: '0.5em'
     };
 
     const inputStyle = {
         all: 'unset',
-        width: '20%',
-        flexGrow: '10'
+        width: '70%',
+        flexGrow: '5'
     };
 
     return (
 
-        <div className="outline" style={divStyle}>
+        <label className="outline" style={divStyle}>
             <img src={img} className="icon" style={iconStyle}/>
             <input name={name} type={inputType} style={inputStyle}/>
-        </div>
+        </label>
     );
 }
 
