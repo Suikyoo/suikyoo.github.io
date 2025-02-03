@@ -4,13 +4,12 @@ const InputField = ({name, inputType, img}) => {
     //const [value, setValue] = useState(null);
 
     const divStyle = {
+        padding: '0.3em',
         display: 'flex',
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        boxSizing: 'border-box',
-        padding: '0.5em'
+        justifyContent: 'space-between'
 
     };
 
@@ -20,7 +19,7 @@ const InputField = ({name, inputType, img}) => {
 
     const inputStyle = {
         all: 'unset',
-        width: '100%',
+        width: '20%',
         flexGrow: '10'
     };
 

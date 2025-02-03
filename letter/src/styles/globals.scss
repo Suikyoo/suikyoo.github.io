@@ -18,19 +18,16 @@ $round-value: 10px;
 .text {
     font: {
       family: "Monaco", monospace;
-      size: 1em;
+      size: 18px;
       style: italic;
     }
 }
 
-.round {
-  border-radius: $round-value;
-}
 .outline {
     border: 2px solid;
     border-radius: $round-value;
     color: $dark-color;
-    border-color: $bland-color;
+    border-color: $dark-color;
 }
 
 .outline:hover {
