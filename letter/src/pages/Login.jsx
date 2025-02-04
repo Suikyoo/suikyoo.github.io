@@ -6,25 +6,20 @@ import passwordImg from '../assets/password.svg';
 
 import InputField from '../components/InputField';
 
-import '../styles/login.scss';
-
 const Login = () => {
 
     const userNameInput = useRef('');
     const passwordInput = useRef('');
 
     const formStyle = {
-        width: '80%',
-        height: '80vh',
-        boxSizing: 'border-box',
-        padding: '1em'
-
+        width: '70%',
+        maxWidth: '375px'
 
     };
 
     return (
         <>
-            <form className="round bg-primary" style={formStyle}onSubmit={ async (e) => {
+            <form style={formStyle}onSubmit={ async (e) => {
                 
                 e.preventDefault();
 
