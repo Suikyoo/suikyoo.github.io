@@ -1,12 +1,17 @@
 
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+const { express } = require('express');
+
 const {initializeMessageListener, sendMessageListener, disconnectListener} = require('./controllers/socketController');
+const {  } = require('./controllers/authController'); 
 
 const PORT = 5500;
-const httpServer = createServer();
 
-const io = new Server(httpServer, {
+const app = express();
+
+const server = createServer(app);
+const io = new Server(server, {
     cors: {
         origin: ["http://localhost:5173", "http://localhost:5173"],
         methods: ["GET", "POST"]
@@ -17,6 +22,12 @@ const io = new Server(httpServer, {
 
 //this is used to catch up on the backlogs chat messages
 //i.e, a user has logged in late
+
+
+
+app.post('/auth', (req, res) => {
+
+} );
 
 io.on("connection", (socket) => {
 
@@ -41,4 +52,4 @@ io.on("connection", (socket) => {
 
 
 
-httpServer.listen(PORT, () => console.log(`Server listening on port: ${PORT}.`));
+server.listen(PORT, () => console.log(`Server listening on port: ${PORT}.`));
