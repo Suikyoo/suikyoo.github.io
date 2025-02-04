@@ -1,6 +1,5 @@
 
 import {createContext, useContext, useState, useEffect, useRef} from 'react';
-
 import { socket } from '../socket';
 import { createRegister, getId } from  '../id';
 import { AuthContext } from '../auth';

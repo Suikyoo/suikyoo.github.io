@@ -3,8 +3,8 @@ const { createServer } = require('http');
 const { Server } = require('socket.io');
 const { express } = require('express');
 
-const {initializeMessageListener, sendMessageListener, disconnectListener} = require('./controllers/socketController');
-const {  } = require('./controllers/authController'); 
+const { initializeMessageListener, sendMessageListener, disconnectListener } = require('./controllers/socketController');
+const { authenticateUser, authMiddleware } = require('./controllers/authController'); 
 
 const PORT = 5500;
 
@@ -25,7 +25,10 @@ const io = new Server(server, {
 
 
 
-app.post('/auth', (req, res) => {
+app.post('/auth/login', (req, res) => {
+    const{username, password} = req.body;
+    return authenticateUser(username, password);
+
 
 } );
 

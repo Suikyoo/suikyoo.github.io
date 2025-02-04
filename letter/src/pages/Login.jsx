@@ -33,11 +33,10 @@ const Login = () => {
 
     const [success, setSuccess] = useState(false);
 
-
     return (
         <>
             <form className="round bg-secondary" style={formStyle} onSubmit={ async (e) => {
-
+                e.preventDefault();
                 const formData = new FormData(e.target);
 
                 const username = formData.get("username");
@@ -45,7 +44,13 @@ const Login = () => {
 
                 console.log("uwu");
                 console.log(username, password);
-
+                axios.post('/auth/login', {username, password})
+                    .then( (res) => {
+                        console.log("user logged in");
+                    })
+                    .catch( (err) => {
+                        console.log("invalid user");
+                    });
                 
 
                 }}>

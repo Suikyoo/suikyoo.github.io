@@ -8,6 +8,7 @@ import { AuthProvider } from './auth';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import MessageApp from './pages/MessageApp';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import "./styles/app.scss";
 
@@ -17,8 +18,11 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/messageapp" element={<MessageApp/>}/>
+
+                <Route path="/login" element={<AuthProvider><Login/></AuthProvider>}/>
+
+                <Route path="/messageapp" element={<ProtectedRoute><AuthProvider><MessageApp/></AuthProvider></ProtectedRoute>}/>
+
             </Routes>
         </BrowserRouter>
     )
