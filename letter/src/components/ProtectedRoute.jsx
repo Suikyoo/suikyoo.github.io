@@ -1,19 +1,26 @@
 import { useNavigate, Outlet } from 'react-router';
-import { useContext } from 'react';
-import { AuthContext } from '../auth';
+import { useEffect } from 'react';
+import { useAuth } from '../auth';
 
 
 
-const ProtectedRoute = () => {
-
-    const { auth } = useContext(AuthContext);
+const ProtectedRoute = ({children}) => {
 
     const navigate = useNavigate();
-    if (!auth.sucess) {
-        navigate('/');
-    }
 
-    return ( <Outlet/> );
+    useEffect( () => {
+        let success = sessionStorage.getItem("success");
+
+        if (!success) {
+            navigate('/');
+        }
+    }, [])
+
+    return ( 
+        <>
+            {children}
+        </>   
+    );
 }
 
 export default ProtectedRoute;

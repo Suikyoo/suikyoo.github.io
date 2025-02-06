@@ -1,18 +1,28 @@
 
-const brcypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const secretKey = 'petpeeve';
 
 const users = [
     {
-        username: "Suikyoo",
-        password: bcrypt.hash("password", 8)
+        username: "Alpha",
+        password: ""
+    },
+
+    {
+        username: "Beta",
+        password: ""
     }
 ];
 
-const authenticateUser = async (username, password) => {
+bcrypt.hash("password", 5, (err, hash) => {users[0].password = hash} );
+bcrypt.hash("password", 5, (err, hash) => {users[1].password = hash} );
 
-    const user = users.find( u => { u.username === username});
+const authenticateUser = async (req, res) => {
+    const {username, password} = req.body;
+
+    const user = users.find( u => {return u.username === username});
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.status(401).send("Username or password invalid");
@@ -20,7 +30,7 @@ const authenticateUser = async (username, password) => {
 
     const token = jwt.sign({username: user.username}, secretKey, { expiresIn: '1h'});
 
-    return res.status(200).send({token});
+    res.status(200).send({token});
 
 }
 

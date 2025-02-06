@@ -15,16 +15,17 @@ import "./styles/app.scss";
 const App = () => {
     
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
 
-                <Route path="/login" element={<AuthProvider><Login/></AuthProvider>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/messageapp" element={<ProtectedRoute><MessageApp/></ProtectedRoute>}/>
 
-                <Route path="/messageapp" element={<ProtectedRoute><AuthProvider><MessageApp/></AuthProvider></ProtectedRoute>}/>
-
-            </Routes>
-        </BrowserRouter>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     )
 }
 

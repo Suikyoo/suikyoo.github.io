@@ -1,7 +1,12 @@
 
 const { createServer } = require('http');
 const { Server } = require('socket.io');
-const { express } = require('express');
+
+const express = require('express');
+
+//middlewares
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const { initializeMessageListener, sendMessageListener, disconnectListener } = require('./controllers/socketController');
 const { authenticateUser, authMiddleware } = require('./controllers/authController'); 
@@ -10,24 +15,29 @@ const PORT = 5500;
 
 const app = express();
 
-const server = createServer(app);
-const io = new Server(server, {
-    cors: {
+const corsOption = {
         origin: ["http://localhost:5173", "http://localhost:5173"],
         methods: ["GET", "POST"]
-    }
+    };
+
+const server = createServer(app);
+
+
+const io = new Server(server, {
+    cors: corsOption
 });
 
 
+app.use(cors(corsOption));
+app.use(bodyParser.json());
 
 //this is used to catch up on the backlogs chat messages
 //i.e, a user has logged in late
 
 
 
-app.post('/auth/login', (req, res) => {
-    const{username, password} = req.body;
-    return authenticateUser(username, password);
+app.post('/auth/login', async (req, res) => {
+    await authenticateUser(req, res);
 
 
 } );
@@ -43,9 +53,9 @@ io.on("connection", (socket) => {
 
     //edit: I've refactored (idk if that's the term) the code and transferred it to ./controllers/socketConroller.js
 
-    initializeMessageListener(socket);
-    sendMessageListener(socket);
-    disconnectListener(socket);
+    initializeMessageListener(io, socket);
+    sendMessageListener(io, socket);
+    disconnectListener(io, socket);
 
 });
 

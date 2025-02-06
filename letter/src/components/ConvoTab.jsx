@@ -2,7 +2,7 @@
 import {createContext, useContext, useState, useEffect, useRef} from 'react';
 import { socket } from '../socket';
 import { createRegister, getId } from  '../id';
-import { AuthContext } from '../auth';
+import { useAuth } from '../auth';
 
 import sendIcon from '../assets/send.svg';
 
@@ -17,20 +17,22 @@ import '../styles/convo.scss';
 const ConvoContext = createContext({});
 
 const ConvoTab = ({name}) => {
-    
     const [messageList, setMessageList] = useState([]);
 
-    //ids that have not been validated by the server
-    createRegister("temporary");
-
     useEffect(() => {
-        socket.on("connect", () => {
 
-            socket.emit("initialize-data", (data) => {
-                setMessageList(data);
+        socket.emit("initialize-data", (data) => {
+            setMessageList(data);
 
-            });
+        });
 
+        socket.on("receive-message", (message) => {
+
+           socket.emit("initialize-data", (data) => {
+            setMessageList(data);
+
+           });
+ 
         });
 
         socket.on("disconnect", () => {console.log("client disconnected")});
@@ -58,7 +60,6 @@ const Head = () => {
 
 const Body = () => {
     const { messageList } = useContext(ConvoContext);
-    console.log(typeof(messageList));
     return (
         <ul className="body">
             {messageList.map( msg => <Message key={msg.id} message={msg}/>)}
@@ -68,53 +69,50 @@ const Body = () => {
 
 const Foot = () => {
     const [userInput, setUserInput] = useState("")
+    //used to keep useEffect firing
+    const [count, setCount] = useState(0);
+
     const {messageList, setMessageList} = useContext(ConvoContext);
-    const {auth} = useContext(AuthContext);
+    const username = sessionStorage.getItem("username");
     const inputRef = useRef();
 
-    useEffect(() => {
-        socket.on("receive-message", (message) => {
-            setMessageList([... messageList, message]);
-        });
-    });
-
+    const formStyle = {
+        width: "100%"
+    }
     return (
-        <div className="foot">
-            <form onSubmit={ e => {
+        <form className="foot" style={formStyle} onSubmit={ e => {
 
-                e.preventDefault();
+            e.preventDefault();
 
-                //onclick button for inputting chat message
-                //create message object that syncs well with the message objects in the server
+            //onclick button for inputting chat message
+            //create message object that syncs well with the message objects in the server
 
-                let message = {user: auth.name, content: userInput};
+            let message = {user: username, content: userInput};
 
-                socket.emit("send-message", message, array.length);
+            socket.emit("send-message", message, messageList.length);
 
-                setUserInput("");
+            setUserInput("");
 
-                inputRef.current.focus();
+            inputRef.current.focus();
 
-                }}>
+            }}>
+            <input type="text" ref={inputRef} value={userInput} onChange={e => setUserInput(e.target.value)}/>
+            <button type="submit" >
+                <img src={sendIcon} className="icon"/>
+            </button>
 
-                <input type="text" ref={inputRef} value={userInput} onChange={e => setUserInput(e.target.value)}/>
+        </form>
 
-                <button type="submit">
-                    <img src={sendIcon} className="icon"/>
-                </button>
-
-            </form>
-
-            </div>
                 )
 }
 
 const Message = ({message}) => {
-    const {auth} = useContext(AuthContext);
+    let username = sessionStorage.getItem("username");
     return (
-        <div className={"message" + " " + (message.user === auth.name ? "right" : "left") } style={{width: String(message.content.length * 0.9) + "em"}}>
+
+        <li key={message.id} className={"message" + " " + (message.user === username ? "right" : "left") } style={{width: String(message.content.length * 0.9) + "em"}}>
             <p>{`${message.user}: ` + message.content}</p>
-        </div>
+        </li>
     )
 
 }

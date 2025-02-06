@@ -1,11 +1,15 @@
 
 import { useRef, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import userNameImg from '../assets/username.svg';
 import passwordImg from '../assets/password.svg';
 
 import InputField from '../components/InputField';
+
+import { useAuth } from '../auth';
 
 const Login = () => {
 
@@ -25,7 +29,6 @@ const Login = () => {
 
     const buttonStyle = {
         width: '8em',
-        margin: 'auto',
         marginTop: '3em',
         padding: '0.5em',
         margin: '1em'
@@ -33,6 +36,7 @@ const Login = () => {
 
     const [success, setSuccess] = useState(false);
 
+    const navigate = useNavigate();
     return (
         <>
             <form className="round bg-secondary" style={formStyle} onSubmit={ async (e) => {
@@ -42,14 +46,15 @@ const Login = () => {
                 const username = formData.get("username");
                 const password = formData.get("password");
 
-                console.log("uwu");
-                console.log(username, password);
-                axios.post('/auth/login', {username, password})
+                axios.post('http://localhost:5500/auth/login', {username, password})
                     .then( (res) => {
-                        console.log("user logged in");
+                        sessionStorage.setItem("success", 1);
+                        sessionStorage.setItem("username", username);
+
+                        navigate('/messageapp');
                     })
                     .catch( (err) => {
-                        console.log("invalid user");
+                        console.log(err.response);
                     });
                 
 

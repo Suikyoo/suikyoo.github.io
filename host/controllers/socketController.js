@@ -5,24 +5,24 @@ const {getMessages, addMessage} = require('./messageController');
 createRegister("id");
 updateRegister("id", getMessages().length);
 
-const initializeMessageListener = (socket) => {
+const initializeMessageListener = (io, socket) => {
 
     socket.on("initialize-data", (callback) => {
         callback(getMessages());
     });
 }
 
-const sendMessageListener = (socket) => {
+const sendMessageListener = (io, socket) => {
 
     socket.on("send-message", (message, index, callback) => {
         let msg = { ...message, id: getId("id")};
         addMessage(msg);
-        socket.emit("receive-message", msg);
+        io.emit("receive-message", msg);
 
     });
 }
 
-const disconnectListener = (socket) => {
+const disconnectListener = (io, socket) => {
     socket.on("disconect", (reason) => {
         console.log(reason);
     });
