@@ -10,8 +10,6 @@ import Login from './pages/Login';
 import MessageApp from './pages/MessageApp';
 import ProtectedRoute from './components/ProtectedRoute';
 
-import "./styles/app.scss";
-
 const App = () => {
     
     return (

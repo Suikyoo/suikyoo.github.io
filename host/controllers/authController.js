@@ -6,26 +6,21 @@ const secretKey = 'petpeeve';
 
 const users = [
     {
-        username: "Alpha",
-        password: ""
+        username: "tulips",
     },
 
     {
-        username: "Beta",
-        password: ""
+        username: "lilies",
     }
 ];
 
-bcrypt.hash("password", 5, (err, hash) => {users[0].password = hash} );
-bcrypt.hash("password", 5, (err, hash) => {users[1].password = hash} );
-
 const authenticateUser = async (req, res) => {
-    const {username, password} = req.body;
+    const {username} = req.body;
 
-    const user = users.find( u => {return u.username === username});
+    const user = users.find( u => {return u.username === username.toLowerCase()});
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(401).send("Username or password invalid");
+    if (!user) {
+        return res.status(401).send("Username invalid");
     }
 
     const token = jwt.sign({username: user.username}, secretKey, { expiresIn: '1h'});
