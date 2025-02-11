@@ -22,7 +22,7 @@ const Login = () => {
             <div className="rounded-full bg-yellow-100 w-96  h-96 z-1 translate-x-1/3 translate-y-1/2 absolute blur-xs"></div>
             <div className="rounded-full bg-rose-300 w-48  h-48 z-1 -translate-x-4/5 -translate-y-4/5 absolute blur-xs"></div>
             <p className="text-3xl font-bold my-3 z-2 text-stone-800">Who u??</p>
-            <form className="backdrop-blur-lg h-2/3 flex flex-col items-center justify-center w-3/4 p-6 round shadow-xl shadow-stone-400 outline-offset-20 outline-stone-500 max-w-xs z-2" onSubmit={ async (e) => {
+            <form className="h-2/3 flex bg-white flex-col items-center justify-center w-3/4 p-6 round shadow-xl shadow-stone-400 outline-offset-20 outline-stone-500 max-w-sm z-2" onSubmit={ async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target);
 
