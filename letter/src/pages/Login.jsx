@@ -34,7 +34,7 @@ const Login = () => {
                         sessionStorage.setItem("success", 1);
                         sessionStorage.setItem("username", username);
 
-                        navigate('/messageapp');
+                        navigate('/mainpage');
                     })
                     .catch( (err) => {
                         console.log(err.response);

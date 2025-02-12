@@ -8,7 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const { initializeMessageListener, sendMessageListener, disconnectListener } = require('./controllers/socketController');
+const { initializeMessageListener, sendMessageListener, disconnectListener, pingListener} = require('./controllers/socketController');
 const { authenticateUser, authMiddleware } = require('./controllers/authController'); 
 
 const PORT = 5500;
@@ -56,6 +56,7 @@ io.on("connection", (socket) => {
     initializeMessageListener(io, socket);
     sendMessageListener(io, socket);
     disconnectListener(io, socket);
+    pingListener(io, socket);
 
 });
 

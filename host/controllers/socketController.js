@@ -23,9 +23,16 @@ const sendMessageListener = (io, socket) => {
 }
 
 const disconnectListener = (io, socket) => {
-    socket.on("disconect", (reason) => {
+    socket.on("disconnect", (reason) => {
         console.log(reason);
     });
 }
 
-module.exports = {initializeMessageListener, sendMessageListener, disconnectListener};
+const pingListener = (io, socket) => {
+    socket.on("ping", () => {
+        io.emit("pong");
+
+    });
+}
+
+module.exports = {initializeMessageListener, sendMessageListener, disconnectListener, pingListener};

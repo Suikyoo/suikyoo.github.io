@@ -7,6 +7,7 @@ import { AuthProvider } from './auth';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import MainPage from './pages/MainPage';
 import MessageApp from './pages/MessageApp';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/" element={<Home/>}/>
 
                     <Route path="/login" element={<Login/>}/>
+                    <Route path="/mainpage" element={<ProtectedRoute><MainPage/></ProtectedRoute>}/>
                     <Route path="/messageapp" element={<ProtectedRoute><MessageApp/></ProtectedRoute>}/>
 
                 </Routes>
