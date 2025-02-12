@@ -16,7 +16,7 @@ const App = () => {
     return (
         <AuthProvider>
             <BrowserRouter>
-                <Routes>
+                <Routes basename='./letter'>
                     <Route path="/" element={<Home/>}/>
 
                     <Route path="/login" element={<Login/>}/>
