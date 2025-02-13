@@ -9,6 +9,6 @@ export default defineConfig({
         tailwindcss(),
 
     ],
-    base: "suikyoo.github.io/letter",
+    base: "/letter",
 
 })
