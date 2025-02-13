@@ -11,7 +11,7 @@ import MainPage from './pages/MainPage';
 import MessageApp from './pages/MessageApp';
 import ProtectedRoute from './components/ProtectedRoute';
 
-import "./src/styles/style.css";
+import "./styles/style.css";
 
 const App = () => {
     
