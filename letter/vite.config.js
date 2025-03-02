@@ -9,6 +9,5 @@ export default defineConfig({
         tailwindcss(),
 
     ],
-    base: "/letter",
 
 })

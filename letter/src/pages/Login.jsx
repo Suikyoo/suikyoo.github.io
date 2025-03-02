@@ -29,7 +29,7 @@ const Login = () => {
                 const username = formData.get("username");
                 const password = formData.get("password");
 
-                axios.post('http://localhost:5500/auth/login', {username})
+                axios.post('http://192.168.0.107:5500/auth/login', {username})
                     .then( (res) => {
                         sessionStorage.setItem("success", 1);
                         sessionStorage.setItem("username", username);

@@ -5,6 +5,8 @@ import { createRegister, getId } from  '../id';
 import { useAuth } from '../auth';
 
 import sendIcon from '../assets/send.svg';
+import lily from '../assets/lily.svg';
+import tulip from '../assets/tulip.svg';
 
 
 //there would be a host server on a specific address that 
@@ -74,9 +76,8 @@ const Head = () => {
     console.log(username, online);
     return (
         <div className={"bg-" + (username.toLowerCase() == "tulips" ? "yellow" : "rose") + "-100 " + "rounded-t-3xl border-box p-4 mt-8 flex justify-start items-center"}>
+            <img className="w-8 " src={(username.toLowerCase() == "tulips" ? lily : tulip)}/>
             <p>{username.toLowerCase() == "tulips" ? "Lilies" : "Tulips"}</p>
-            <div hidden className={"mx-2 rounded-full w-2 h-2 bg-green-300 " + (!online ? "hidden" : "")}>
-                </div>
         </div>
     )
 }
@@ -131,8 +132,10 @@ const Foot = () => {
 const Message = ({message}) => {
     let username = sessionStorage.getItem("username");
     return (
-
-        <li key={message.id} className={"my-2 box-border p-2 max-w-4/5 self-" + (message.user === username ? "end rounded-t-2xl rounded-l-2xl " : "start rounded-t-2xl rounded-r-2xl ") + (message.user.toLowerCase() == "tulips" ? "bg-rose-100" : "bg-yellow-100")} style={{width: String(message.content.length * 0.9) + "em"}}>{`${message.user}: ` + message.content}</li>
+        <li key={message.id} className={"flex items-center my-2 box-border p-2 max-w-4/5 self-" + (message.user === username ? "end rounded-t-2xl rounded-l-2xl " : "start rounded-t-2xl rounded-r-2xl ") + (message.user.toLowerCase() == "tulips" ? "bg-rose-100" : "bg-yellow-100")} style={{width: String(message.content.length * 2.2) + "em"}}>
+            <img className="w-8 " src={(message.user.toLowerCase() == "tulips" ? tulip : lily)}/>
+            <p>{message.content}</p>
+        </li>
     )
 
 }

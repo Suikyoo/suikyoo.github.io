@@ -16,7 +16,7 @@ const PORT = 5500;
 const app = express();
 
 const corsOption = {
-        origin: ["http://localhost:5173", "http://localhost:5173"],
+    origin: ["http://192.168.0.107:5173", "http://localhost:5173"],
         methods: ["GET", "POST"]
     };
 
@@ -66,4 +66,4 @@ io.on("connection", (socket) => {
 
 
 
-server.listen(PORT, () => console.log(`Server listening on port: ${PORT}.`));
+server.listen(PORT, "0.0.0.0", () => console.log(`Server listening on port: ${PORT}.`));
