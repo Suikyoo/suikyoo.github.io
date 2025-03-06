@@ -9,14 +9,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const { initializeMessageListener, sendMessageListener, disconnectListener, pingListener} = require('./controllers/socketController');
-const { authenticateUser, authMiddleware } = require('./controllers/authController'); 
+const { signIn, signUp, authorize } = require('./controllers/authController'); 
 
-const PORT = 5500;
+require('dotenv').config();
+
 
 const app = express();
 
 const corsOption = {
-    origin: ["http://192.168.0.107:5173", "http://localhost:5173"],
+    origin: [process.env.CLIENT_URL],
         methods: ["GET", "POST"]
     };
 
@@ -37,8 +38,11 @@ app.use(bodyParser.json());
 
 
 app.post('/auth/login', async (req, res) => {
-    await authenticateUser(req, res);
+    return await signIn(req, res);
 
+} );
+app.post('/auth/signup', async (req, res) => {
+    return await signUp(req, res);
 
 } );
 
@@ -65,5 +69,4 @@ io.on("connection", (socket) => {
 //and also interacts with itself through a callback function, letting the client know that the message was sent
 
 
-
-server.listen(PORT, "0.0.0.0", () => console.log(`Server listening on port: ${PORT}.`));
+server.listen(process.env.PORT, () => console.log(`Server listening on port: ${process.env.PORT}.`));

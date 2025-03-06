@@ -1,59 +1,73 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { accounts } = require('../models/mongoClient.js');
 
-const secretKey = 'petpeeve';
+const signUp = async (req, res) => {
+    console.log("sign up");
+    const {username, password} = req.body 
+    const match = await accounts.findOne({username: username});
 
-const users = [
-    {
-        username: "tulips",
-    },
 
-    {
-        username: "lilies",
-    }
-];
-
-const authenticateUser = async (req, res) => {
-    const {username} = req.body;
-
-    const user = users.find( u => {return u.username === username.toLowerCase()});
-
-    if (!user) {
-        return res.status(401).send("Username invalid");
+    if (match) {
+        return res.status(400).send("Pick another username")
     }
 
-    const token = jwt.sign({username: user.username}, secretKey, { expiresIn: '1h'});
+    const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS));
+
+
+    const account_doc = {
+        username: username,
+        password: hashedPassword,
+        status: 0,
+        available: 50
+        
+    };
+
+    const result = await accounts.insertOne(account_doc);
+
+
+    res.status(200).send("User has been successfully registered");
+}
+
+const signIn = async (req, res) => {
+    console.log("sign in");
+    const {username, password} = req.body
+    const match = await accounts.findOne({username});
+
+    if (!match) {
+        return res.status(401).send("Username or password invalid");
+    }
+    const result = await bcrypt.compare(password, match.password);
+
+    if (!result) {
+        return res.status(401).send("Username or password invalid")
+    }
+    const token = await jwt.sign({username: match.username}, process.env.JWT_SECRET_KEY, { expiresIn: '1h'});
 
     res.status(200).send({token});
 
 }
 
-const verifyToken = (token) => {
-    jwt.verify(token, secretKey, (err, user) => {
-        if (err) {
-            return res.status(403).send("Invalid or expired token");
-        }
-        res.status(200).send("Token Verified");
-    });
-
-}
-
-const authMiddleware = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+const authorize = (req, res, next) => {
+    const authHeader = req.headers["Authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
 
     if (!token) {
-        return res.status(401).send("Token Required");
+        return res.status(401).send("Authorization token is required");
     }
 
-    jwt.verify(token, secretKey, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, data) => {
         if (err) {
-            return res.status(403).send("Invalid or expired token");
+            return res.status(403).send("Invalid or expired authorization token");
         }
-        req.user = user;
+
+        req.authData = data;
+
         next();
     });
-}
 
-module.exports = {authenticateUser, authMiddleware};
+
+
+}
+module.exports = {signUp, signIn, authorize};
