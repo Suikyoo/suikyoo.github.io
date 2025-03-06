@@ -7,15 +7,15 @@ import axios from 'axios';
 import userNameImg from '../assets/username.svg';
 import passwordImg from '../assets/password.svg';
 
+
 import InputField from '../components/InputField';
 
 import { useAuth } from '../auth';
 
-
 const Login = () => {
 
     const [success, setSuccess] = useState(false);
-
+    const [status, setStatus] = useState({text: "", color: "green", hidden: true})
     const navigate = useNavigate();
     return (
         <div className="h-full w-full flex flex-col items-center justify-center bg-stone-95 z-1">
@@ -29,26 +29,46 @@ const Login = () => {
                 const username = formData.get("username");
                 const password = formData.get("password");
 
-                axios.post('http://192.168.0.107:5500/auth/login', {username})
-                    .then( (res) => {
-                        sessionStorage.setItem("success", 1);
-                        sessionStorage.setItem("username", username);
+                const BASE_URL = "https://message-app-host.onrender.com";
 
-                        navigate('/mainpage');
-                    })
-                    .catch( (err) => {
-                        console.log(err.response);
-                    });
+                if (e.nativeEvent.submitter.id == "login") {
+                    axios.post( `${BASE_URL}/auth/login`, {username, password})
+                        .then( (res) => {
+                            sessionStorage.setItem("success", 1);
+                            sessionStorage.setItem("username", username);
+
+                            setStatus({text: "", color: "green", hidden: true});
+                            navigate('/messageapp');
+                        })
+                        .catch( (err) => {
+                            setStatus({text: err.response.data, color: "red", hidden: false})
+                        });
+                }
+                
+                else {
+                    axios.post(`${BASE_URL}/auth/signup`, {username, password})
+                        .then( (res) => {
+                            setStatus({text: res.data, color: "green", hidden: false});
+
+                        })
+                        .catch( (err) => {
+                            setStatus({text: err.response.data, color: "red", hidden: false});
+                            
+                        });
+
+                }
                 
 
                 }}>
 
-                <InputField label="flower" name="username" inputType="text" icon={userNameImg}/>
+                <InputField label="username" name="username" inputType="text" icon={userNameImg}/>
+                <InputField label="password" name="password" inputType="password" icon={passwordImg}/>
 
 
-                <p className="hidden"></p>
+                <button type="submit" id="login" className="m-3 p-2 bg-stone-800 text-stone-200 w-3/4 round">Log in</button>
+                <button type="submit" id="signup" className="m-3 p-2 bg-stone-800 text-stone-200 w-3/4 round">Sign up</button>
 
-                <button type="submit" className="m-3 p-2 bg-stone-800 text-stone-200 w-3/4 round">Log in</button>
+                {!status.hidden ? <p style={{color: status.color}}>{status.text}</p> : <></>}
             </form>
         </div>
     );

@@ -5,7 +5,7 @@ const MessageApp = () => {
 
 
     return (
-        <div className="bg-gray-100 w-full flex flex-col items-center justify-center">
+        <div className="bg-gray-800 w-full h-full flex flex-col items-center justify-center">
             <ConvoTab/>
         </div>
     );

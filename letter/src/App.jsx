@@ -13,6 +13,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import "./styles/style.css";
 
+
+
 const App = () => {
     
     return (
