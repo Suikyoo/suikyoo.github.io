@@ -14,16 +14,17 @@
 
     async function reset() {
         const input = document.querySelector('input');
-        console.log(input.files)
 
         const base64 = await toBase64(input.files[0]);
-        console.log(base64)
 
         const src = base64;
 
         var img = new Image();
         img.onload = function () {
             let canvas = document.getElementById("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
             let ctx = canvas.getContext("2d", {willReadFrequently: true});
             ctx.drawImage(img, 0, 0);
 
@@ -79,7 +80,8 @@
     }
 
     function updatePosition() {
-        document.getElementById("pixel-pos").innerHTML = pixelPos.join(",");
+        document.getElementById("pixel-x").value = pixelPos[0];
+        document.getElementById("pixel-y").value = pixelPos[1];
 
     }
     // Convert canvas to image
@@ -130,6 +132,17 @@
         downloadImage(dataURL, 'my-canvas.jpeg');
 
     }
+
+    function inputPos(e) {
+        e.preventDefault();
+        let x = document.getElementById("pixel-x").value;
+        let y = document.getElementById("pixel-y").value;
+
+        pixelPos = [x, y];
+        update();
+
+
+    }
 </script>
 
 <head>
@@ -156,6 +169,12 @@
             width: 3em;
             height: 2em;
 
+        }
+
+        input[type="number"] {
+            background-color: #323232;
+            text-align: center;
+            width: 3em;
         }
 
         button {
@@ -188,12 +207,20 @@
             border: 0.3em solid #e2e2e2;
         }
 
-        #pixel-pos {
+        .pixel-pos {
             color: #e2e2e2;
+            margin: 1em;
         }
 
         .menu {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            position: sticky;
+            top: 0;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            background-color: rgba(50, 50, 50, 0.3);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
         }
 
         .render {
@@ -241,7 +268,9 @@
         </div>
 
 
-        <p id="pixel-pos"></p>
+        <form class="pixel-pos" onsubmit="inputPos(event)">
+            <input type="number" value="0" id="pixel-x"> x <input type="number" value="0" id="pixel-y">
+        </form>
 
         <div class="move">
             <div class="move-row">
