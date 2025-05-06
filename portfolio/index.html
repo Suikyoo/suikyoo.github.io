@@ -1,796 +1,87 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Portfolio</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            
-            @font-face {
-                font-family: new_font;
-                font-kerning: normal;
-                src: url(assets/font.otf);
-
-            }
-            body {
-                font-family: new_font;
-                background-color: #3d82e3;
-                margin: 0px;
-                transition-timing-function: ease-out;
-
-            }
-            img {
-                width: 100%;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-
-            }
-
-            #background {
-                width: 100%;
-                height: 600px;
-                background-image: url('assets/banner.png');
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                overflow: hidden;
-            }
-
-            a {
-                color: #72a5cf;
-                text-decoration: none;
-                transition: background-color 0.5s, color 0.5s;
-
-            }
-
-            a:hover {
-                color: #d9d35f;
-
-            }
-
-            .block {
-                padding: 20px;
-                color: white;
-                border: solid 10px #d9d35f;
-                box-shadow: inset 10px 10px #224575, 10px 10px #224575;
-
-            }
-
-            #main_nav {
-                width: 100%;
-                padding: 15px;
-                font-size: 20px;
-                background-color: #0a4872;
-                color: #72a5cf;
-
-            }
-
-            #main_nav>a::after {
-                content : " | ";
-                padding-left: 20px;
-                padding-right: 20px;
-
-            }
-
-            .dropdown {
-                box-sizing: border-box;
-                position: relative;
-                display: inline;
-
-            }
-            .dropdown>a {
-                position: relative;
-                display: inline-block;
-
-            }
-
-            .dropdown_content {
-                margin-left: 20px;
-                border-radius: 10px;
-                display: none;
-                opacity: 0.5;
-                z-index: 1;
-                text-decoration: none;
-                position: absolute;
-                overflow-y: scroll;
-                width: 200px;
-                height: 300px;
-
-            }
-
-            ::-webkit-scrollbar {
-                width: 1px;
-
-            }
-
-            .dropdown_content a{
-                background-color: white;
-                padding: 20px;
-                display: block;
-
-            }
-            .dropdown_content a:hover{
-                background-color: #8eb3d1;
-
-            }
-
-            .dropdown:hover .dropdown_content{
-                opacity: 1;
-                display: block;
-
-            }
-            #main{
-                padding: 20px;
-                color: white;
-                border: solid 10px #d9d35f;
-                box-shadow: inset 10px 10px #224575, 10px 10px #224575;
-
-                min-width: 200px;
-                width: 20%;
-                margin: auto;
-                transition: width 0.5s, padding 2s;
-                border-radius: 20px;
-            }
-
-            #main:hover{
-                width: 70%;
-                padding: 40px;
-
-            }
-
-            #main:hover .profile p{
-                opacity: 1;
-
-            }
-
-            .profile {
-                display: flex;
-                width: 100%;
-                height: 250px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 10px;
-                box-shadow: 10px 10px #224575;
-                border-radius: 10px;
-                overflow: hidden;
-                transition: margin-top 0.5s, margin-bottom 0.5s;
-
-            }
-            
-            .profile:hover {
-                margin-top: 10px;
-                margin-bottom: 30px;
-
-            }
-            .profile:hover .tail {
-                background-color: #385873;
-
-            }
-
-            .profile h2 {
-                text-align: center;
-                font-size: 25px;
-                transition: font-size 0.5s;
-
-            }
-            .profile a img {
-                border-radius: 20px;
-                width: 200px;
-                transition: width 1s;
-
-            }
-
-            .profile p {
-                font-family: arial;
-                font-style: italic;
-                line-height: 30px;
-                opacity: 0;
-                font-size: 16px;
-                margin-top: 50px;
-                width: 600px;
-                height: 200px;
-                margin-left: 100px;
-                margin-right: 100px;
-                color: #72a5cf;
-                text-align: justify;
-                transition: opacity 2s;
-                transition-delay: 0.5s;
-                overflow: hidden;
-                direction: ltr;
-
-            }
-
-            .profile .head {
-                background-color: #598cb6;
-                transition: background-color 0.5s;
-                width: 300px;
-
-            }
-
-            .profile .head:hover {
-                background-color: #81aacc;
-
-
-            }
-
-            .profile .head:hover img {
-                width: 175px;
-
-            }
-
-            .profile .head:hover h2 {
-                font-size: 30px;
-
-            }
-
-            .profile .tail {
-                background-color: #466e8f;
-                transition: background-color 0.5s;
-
-            }
-            /* Extra small devices (phones, 600px and down) */
-            @media only screen and (max-width: 600px) {
-                #background {
-                    height: 300px;
-                }
-
-                #main {
-                    padding: 10px;
-                    padding-bottom: 0px;
-                    border-width: 5px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 200px;
-                }
-                .profile .head h2{
-                    font-size: 16px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 20px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 12px;
-                    line-height: 15px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 100px;
-                    height: 200px;
-                }
-
-                .profile .head {
-                    width: 200px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 100px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 120px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 150px;
-                    height: 200px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 10px;
-
-                }
-
-
-            }
-
-            /* Small devices (portrait tablets and large phones, 600px and up) */
-            @media only screen and (min-width: 600px) {
-                #background {
-                    height: 300px;
-                }
-
-                #main {
-                    padding: 10px;
-                    padding-bottom: 0px;
-                    border-width: 5px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 220px;
-                }
-                .profile .head h2{
-                    font-size: 16px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 20px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 12px;
-                    line-height: 15px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 150px;
-                    height: 200px;
-                }
-
-                .profile .head {
-                    width: 200px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 100px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 120px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 150px;
-                    height: 200px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 10px;
-
-                }background {
-                    height: 300px;
-                }
-
-                #main {
-                    padding: 10px;
-                    padding-bottom: 0px;
-                    border-width: 5px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 220px;
-                }
-                .profile .head h2{
-                    font-size: 16px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 20px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 16px;
-                    line-height: 15px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 250px;
-                    height: 200px;
-                }
-
-                .profile .head {
-                    width: 200px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 120px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 130px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 160px;
-                    height: 220px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 12px;
-
-                }    
-            }
-
-            /* Medium devices (landscape tablets, 768px and up) */
-            @media only screen and (min-width: 768px) {
-                #background {
-                    height: 300px;
-                }
-
-                #main {
-                    padding: 10px;
-                    padding-bottom: 0px;
-                    border-width: 5px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 230px;
-                }
-                .profile .head h2{
-                    font-size: 18px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 22px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 14px;
-                    line-height: 20px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 350px;
-                    height: 200px;
-                }
-
-                .profile .head {
-                    width: 200px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 130px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 140px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 160px;
-                    height: 220px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 12px;
-
-                }
-            }
-                 
-
-            /* Large devices (laptops/desktops, 992px and up) */
-            @media only screen and (min-width: 992px) {
-                #background {
-                    height: 300px;
-                }
-
-                #main {
-                    width: 30%;
-                    padding: 20px;
-                    padding-bottom: 0px;
-                    border-width: 10px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 300px;
-                }
-                .profile .head h2{
-                    font-size: 20px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 22px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 16px;
-                    line-height: 24px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 500px;
-                    height: 230px;
-                }
-
-                .profile .head {
-                    width: 500px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 150px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 180px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 170px;
-                    height: 300px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 14px;
-
-                } 
-            } 
-
-            /* Extra large devices (large laptops and desktops, 1200px and up) */
-            @media only screen and (min-width: 1200px) {
-                #background {
-                    height: 300px;
-                }
-
-                #main {
-                    width: 30%;
-                    padding: 20px;
-                    padding-bottom: 0px;
-                    border-width: 10px;
-                }
-                #main:hover {
-                    padding: 20px;
-                }
-
-                #main-nav {
-                    border-width: 20px;
-
-                }
-                .profile {
-                    height: 300px;
-                }
-                .profile .head h2{
-                    font-size: 24px;
-
-                }
-                .profile .head:hover h2 {
-                    font-size: 26px;
-
-                }
-                .profile p {
-                    text-align: left;
-                    font-size: 18px;
-                    line-height: 25px;
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding: 20px;
-                    width: 500px;
-                    height: 230px;
-                }
-
-                .profile .head {
-                    width: 500px;
-                    padding: 10px;
-
-                }
-                .profile .head img {
-                    width: 180px;
-
-                }
-
-                .profile .head:hover img {
-                    width: 200px;
-
-                }
-                #main_nav {
-                    font-size: 16px;
-                }
-                .dropdown_content {
-                    width: 220px;
-                    height: 300px;
-
-                }
-
-                .dropdown_content a {
-                    padding: 15px;
-
-                }
-            }
-
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
 
-    <body id="home">
-        <nav id="main_nav">
-            <a href="#home">Home</a>
+    <body class="mx-auto w-full h-screen bg-[#3d82e3] font-mono text-[2em] lg:text-[1em] text-white scroll-smooth">
 
-            <div class="dropdown">
-                <a class="lead_link">Projects</a>
-                <div class="dropdown_content">
-                    <a href="#deep">Deep</a>
-                    <a href="#overdoze">Overdoze</a>
-                    <a href="#foreign">Foreign</a>
-                    <a href="#ironheart">Iron Heart</a>
-                    <a href="#dragongate">Dragon Gate</a>
-                    <a href="#remnant">Remnant</a>
-                    <a href="#treasurehunt">Treasure Hunt</a>
-                </div>
+        <div class="w-full h-[10vh] bg-[#adf3ff]"></div>
 
+        <img src="assets/banner.png" class="md:h-[30vh] lg:w-full lg:h-[80vh] object-cover relative bottom-1">
 
+        <div class="w-9/10 mx-auto">
+            <p class="preface mb-12">
+            Software developer with 4+ years of experience in python, mainly developing games, as well as webscraping and automation programs. Also experienced in web development creating front-end applications using React JS and Tailwind along with Express JS as backend.  
+            </p>
+            <div class="flex flex-row items-center">
+                <h1 class="category">Skills</h1>
+                <hr>
+            </div>
+            
+            <section class="preface flex lg:flex-row md:flex-col justify-between mb-4">
+                <section class="lg:w-4/9 box-border">
+                    <h2>Game Development</h2>
+
+                    <p class="sub-text">
+                    Graphics (Pygame, OpenGL/ModernGL)
+                    published over 5 games
+                    </p>
+                    
+                    <h2>Pixel Art</h2>
+                    <p class="sub-text">
+                    Aseprite
+                    </p>
+
+                    <h2>Networking</h2>
+                    <p class="sub-text">
+                    Python (Python Sockets) 
+                    </p>
+
+                </section>
+
+                <section class="lg:w-4/9 box-border">
+                    <h2>Web Development</h2>
+                    <p class="sub-text"> 
+                    Frontend - HTML, CSS (TailwindCSS), Javascript (React JS / Next JS)<br>
+                    Backend - Javascript (Express JS) / Python (Django)<br>
+                    Database - MongoDB, SQLite
+                    </p>
+
+                    <h2>Mobile Development</h2>
+                    <p class="sub-text">
+                    Javascript (React Native) 
+                    </p>
+
+                    <h2>Web Scraping and Automation</h2>
+                    <p class="sub-text">
+                    Python (BeautifulSoup)
+                    </p>
+                </section>
+            </section>
+
+            <div class="flex flex-row items-center">
+                <h1 class="category">Projects</h1>
+                <hr>
             </div>
 
-        </nav>
+            <div id="project-belt" class="flex flex-row items-center justify-evenly">
+                <button id="project-belt-prev" class="px-5"><</button>
 
-        <div id="background"></div>
-
-        <section style="background-color: #3d82e3;">
-
-            <main role="main" id="main" class="block">
-
-                <div id="deep" class="profile">
-
-                    <section class="head">
-                        <h2>Deep</h2>
-                        <a href="https://suikyoo.itch.io/deep"><img src="assets/deep.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>Puzzle action game where you destroy the conduits by gathering energy from the water. WASD or Arrow Keys to move. Mouse to aim and shoot. Destroy all conduits to progress to the next level.</p>
-                    </section>
-
+                <div id="project-list">
                 </div>
 
-                <div id="overdoze" class="profile" style="direction: rtl;">
+                <button id="project-belt-next" class="px-5">></button>
+            </div>
+            <div>
+                ehehe
+            </div>
+            
 
-                    <section class="head">
-                        <h2>Overdoze</h2>
-                        <a href="https://suikyoo.itch.io/overdoze"><img src="assets/overdoze.png"></a>
-                    </section>
+        </div>
 
-                    <section class="tail">
-                        <p>You could modify the board's colors  through your assigned tile. Try to match at least 3 tiles using your assigned tile to pop those tiles. After you try to match it, your assigned tile would be set to another random color. The faster you successfully match and pop tiles, the higher your overdoze. Be careful as once you are on an overdoze chain, you can't stop anymore lest the game would be over if it ever hits 0. Compete on who got the highest score and combo/overdoze. </p>
-                    </section>
-
-
-                </div>
-                <div id="foreign" class="profile">
-
-                    <section class="head">
-                        <h2>Foreign</h2>
-                        <a href="https://suikyoo.itch.io/foreign"><img src="assets/foreign.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>A mysterious tourist. An unknown land. Is he capable of dealing with the natives? Game made for the Pygame Jam: Dimensions. Story about a normal man who secretly lives as a mage and banishes evil wherever he goes. </p>
-                    </section>
-
-
-                </div>
-
-                <div id="ironheart" class="profile" style="direction: rtl;">
-
-                    <section class="head">
-                        <h2>Iron Heart</h2>
-                        <a href="https://suikyoo.itch.io/iron-heart"><img src="assets/ironheart.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>Called into the Grave of Swords, the Iron Heart ventured deep into the pit only to find the Iron Sword calling to him. Leading him to his destiny. Now, only the traps awaiting the grave's exit are the hindrance to his legend.
-
-Game made for ScoreSpace Game Jam with the theme: Magnetic</p>
-                    </section>
-                    
-                </div>
-
-                <div id="dragongate" class="profile">
-                    
-                    <section class="head">
-                        <h2>Dragon Gate</h2>
-                        <a href="https://suikyoo.itch.io/dragon-gate"><img src="assets/dragongate.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>A mere fish leaping through the Dragon Gate? 
-
-Preposterous!..
-
-Or is it?...
-
-
-
-Game submitted for the Mini Jam 104 : Cascade (Although it's a bit late)
-
-This game is about a chinese story... or something idk. I read enough cultivation novels to know that the phrase "fish leaping over the dragon gate" is pretty darn common. It's about a fish going against a waterfall's tides and leaping the dragon gate to become a dragon itself. 
-
-</p>
-                    </section>
-
-                </div>
-
-                <div id="remnant" class="profile" style="direction: rtl;">
-
-                    <section class="head">
-                        <h2>Remnant</h2>
-                        <a href="https://suikyoo.itch.io/remnant"><img src="assets/remnant.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>Grudge and hatred, all in one being granting him immense power. After the darkness within him was cast unto the world, he who was blinded by it felt clarity and saw the truth. Help him fix his mistakes and return the world to its former peace. This is a submission for the Mini Jam 103 : Darkness</p>
-                    </section>
-
-                </div>
-
-                <div id="treasurehunt" class="profile">
-
-                    <section class="head">
-                        <h2>Treasure Hunt</h2>
-                        <a href="https://suikyoo.itch.io/treasure-hunt"><img src="assets/treasurehunt.png"></a>
-                    </section>
-
-                    <section class="tail">
-                        <p>Treasure Hunt is a game of wits and luck where you need to find the treasure based on the clues. I hope you enjoy it! Please leave a comment if you have any concerns or suggestions.</p>
-                    </section>
-
-                </div>
-
-            </main>
-        </section>
-
+        
     </body>
+    <script src="script.js"></script>
 </html>
