@@ -65,7 +65,6 @@ function initialize_projects() {
         div.appendChild(image);
 
         div.addEventListener("click", function () {
-            console.log("ehehee");
             project_list.children[selected_index].className = "";
             selected_index = index;
             project_list.children[selected_index].className = "selected";
