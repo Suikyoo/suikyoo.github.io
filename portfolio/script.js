@@ -14,13 +14,13 @@ const data = [
     {
         "name": "Foreign",
         "src": "./assets/foreign.png",
-        "description": "A mysterious tourist. An unknown land. Is he capable of dealing with the natives? Game made for the Pygame Jam: Dimensions. A story about a normal man who secretly lives as a mage and banishes evil wherever he goes. "
+        "description": "A mysterious tourist. An unknown land. Is he capable of dealing with the natives? Game made for the Pygame Jam: Dimensions. "
     },
 
     {
         "name": "Dragon Gate",
         "src": "./assets/dragongate.png",
-        "description": "A mere fish leaping through the Dragon Gate? \nPreposterous!..\nOr is it?... \nThis game is about a chinese story... or something idk. I read enough cultivation novels to know that the phrase \"fish leaping over the dragon gate\" is pretty darn common. It's about a fish going against a waterfall's tides and leaping the dragon gate to become a dragon itself. "
+        "description": "A mere fish leaping through the Dragon Gate? \nPreposterous!..\nOr is it?..."
     },
 
     {
@@ -48,6 +48,9 @@ let selected_index = 0;
 const project_list = document.getElementById("project-list")
 const project_list_prev = document.getElementById("project-belt-prev");
 const project_list_next = document.getElementById("project-belt-next");
+const selected_img = document.getElementById("selected-img");
+const selected_description = document.getElementById("selected-description");
+
 
 const scroll_offset = 300;
 
@@ -60,6 +63,11 @@ function initialize_projects() {
         const image = document.createElement("img");
         image.src = e.src;
 
+        if ( index === 0) {
+            selected_img.src = e.src;
+            selected_description.innerText = e.description;
+        }
+
         div.className = (selected_index === index) ? "selected" : "";
         div.appendChild(name);
         div.appendChild(image);
@@ -68,6 +76,9 @@ function initialize_projects() {
             project_list.children[selected_index].className = "";
             selected_index = index;
             project_list.children[selected_index].className = "selected";
+            selected_img.src = e.src;
+            selected_description.innerText = e.description;
+
         });
 
         project_list.appendChild(div);

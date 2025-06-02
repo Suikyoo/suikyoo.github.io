@@ -295,6 +295,11 @@ hr {
   width: calc(2/3 * 100%);
   text-align: justify;
 }
+
+.category {
+    padding-bottom: 1em;
+}
+
 .category .category-name {
   position: relative;
   left: -30px;
@@ -372,10 +377,31 @@ hr {
   transition: opacity 1s;
 }
 #project-list img {
-  width: 100%;
+  width: 256px;
   transition: opacity 1s;
   border-radius: var(--radius-3xl);
   padding: calc(var(--spacing) * 2);
+}
+
+#project-descriptor {
+    border-top: 1px dashed white;
+    border-bottom: 1px dashed white;
+    border-radius: 5px;
+    height: 10em;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 5em;
+
+}
+#project-descriptor img {
+  width: 128px ;
+  transition: opacity 1s;
+  border-radius: var(--radius-3xl);
+  padding: 10px;
+  margin-right: 3em;
+
 }
 #project-list > div:not(.selected) > img, #project-list > div:not(.selected) > h2 {
   opacity: 25%;
