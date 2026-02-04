@@ -5,21 +5,74 @@
     <script src="./lib/matter.js"></script>
     <style>
       body {
+        display: flex;
         background: black;
         color: white;
+        justify-content: center;
+        align-items: center;
+      }
+      #container {
+        display: flex;
+        flex-direction: column-reverse;
+
+
+      }
+      @keyframes animation {
+      from {border: 0px solid white;}
+      from {border: 4px dashed white;}
       }
       button {
         all: unset;
-        font-size: 100px;
-        position: fixed;
-        bottom: 80px;
-        right: 80px;
+        font-size: 50px;
+        text-align: center;
+        border-radius: 10px;
+        animation-name: animation;
+        animation-duration: 0.5s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        transition: opacity 0.3s, transform 0.3s, color 0.3s;
+        opacity: 0.3;
+
       }
+      button:hover {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+      button:active {
+        transform: translateY(20px);
+      }
+      button:focus {
+        color: yellow;
+        opacity: 1.;
+      }
+
+      #matter-canvas {
+        position: static;
+      }
+
+      @keyframes img_animation {
+      from {opacity: 0;}
+      to {opacity: 1;}
+      }
+      img {
+        animation-name: img_animation;
+        animation-direction: alternate;
+        animation-duration: 2s;
+        animation-delay: 2s;
+        animation-iteration-count: 1;
+        position: fixed;
+
+        transition: opacity: 0.3s;
+      }
+
     </style>
 
   </head>
   <body>
-    <button id="prompt"> Yes </button>
+    <div id="container">
+      <button id="prompt"> Yes </button>
+      <div id="matter-canvas" />
+    </div>
   </body>
     <script src="./physics.js"></script>
 </html>
