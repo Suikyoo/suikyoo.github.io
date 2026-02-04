@@ -21,8 +21,8 @@ var render = Render.create({
     engine: engine,
   options: {
     wireframes: false,
-    width: 400,
-    height: 400,
+    width: 600,
+    height: 600,
   }
   
 });
@@ -37,7 +37,7 @@ const pixel_data = [[[242, 174, 126], [242, 174, 126], [242, 174, 126], [242, 17
 // create two boxes and a ground
 var cloth = Composites.stack(0, 0, 60, 40, 0,0, function(x, y) {
   
-  return Bodies.circle(x, y, 3, {
+  return Bodies.circle(x, y, 5, {
     collisionFilter: {
       category: -1,
       mask: -1,
