@@ -1,0 +1,40 @@
+
+body {
+  background-color: black;
+  max-width: 560px;
+}
+#text-fill {
+  background-image: url("img.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-size: 1vh;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+  text-align: left;
+  width: 100%;
+}
+#initial-fill {
+  background-image: url("text.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-size: 1vh;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+  width: 100%;
+  
+}
+
+p {
+  line-height: 4px;
+  letter-spacing: -1px;
+}
